@@ -84,8 +84,23 @@ VALUES
 INSERT INTO utenti (username, password, email, telefono, nome, cognome, tipo)
 VALUES
     ('antonio', 'antonio123', 'antonio.boccia@esempio.it', '3339998888', 'Antonio', 'Boccia', 'cliente');
-INSERT INTO vini (nome, descrizione, categoria, regione, annata, prezzo, disponibilita, img) VALUES
-('Amarone della Valpolicella', 'Splendido colore granato...', 'VINO_ROSSO', 'Veneto', 2015, 20.00, 40, 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Amarone_red_wine.jpg'),
-('Montepulciano d’Abruzzo', 'Vino rosso morbido e fruttato...', 'VINO_ROSSO', 'Abruzzo', 2022, 16.00, 120, 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Montepulciano_D%27Abruzzo_wine_and_bottle.jpg'),
+-- Aggiunta della colonna per l’immagine
+ALTER TABLE prodotti ADD COLUMN immagine_url TEXT;
+
+INSERT INTO prodotti (nome, descrizione, tipologia, regione, annata, prezzo, quantita, img)
+VALUES
+('Amarone della Valpolicella', 'Splendido colore granato. Aromi di barbabietola arrosto, rosmarino, pomodoro essiccato al sole e fichi maturi con un palato rotondo, vibrante e fruttato. Sapori di riduzione di melograno, cioccolato e caffè fresco. Finale saporito, oliva nera. Un Amarone equilibrato, complesso e dal fascino rustico.', 'VINO_ROSSO', 'Veneto', 2015, 20.00, 40, 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Amarone_red_wine.jpg'),
+('Montepulciano D’Abruzzo', 'Vino rosso morbido e fruttato...', 'VINO_ROSSO', 'Abruzzo', 2022, 16.00, 120, 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Montepulciano_D%27Abruzzo_wine_and_bottle.jpg'),
 ('Monaco Rosso Taurasi', 'Il naso è aromatico, tostato...', 'VINO_ROSSO', 'Campania', 2015, 40.00, 80, 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Barolo_bottle.jpg'),
-('Chianti Classico', 'Prodotto nella zona di produzione più antica...', 'VINO_ROSSO', 'Toscana', 2019, 22.00, 50, 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Chianti_classico_bottle.jpg');
+('Chianti Classico', 'Prodotto nella zona di produzione più antica...', 'VINO_ROSSO', 'Toscana', 2019, 22.00, 50, 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Chianti_classico_bottle.jpg'),
+('Cannubi Barolo', 'Colore rubino scuro brillante...', 'VINO_ROSSO', 'Piemonte', 2020, 160.00, 40, 'https://upload.wikimedia.org/wikipedia/commons/4/47/Barolo_Vineyards_and_Wine_Bottle.jpg'),
+('Fiano D’Avellino', 'Nel calice questo vino è colore giallo paglierino...', 'VINO_BIANCO', 'Campania', 2022, 25.00, 90, 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Fiano_di_Avellino.jpg'),
+('Greco Di Tufo', 'Particolarmente fruttato e di facile riconoscimento...', 'VINO_BIANCO', 'Campania', 2021, 13.50, 110, 'https://upload.wikimedia.org/wikipedia/commons/5/58/Greco_di_Tufo_Cantina.jpg'),
+('Elisena', 'Buona acidità supportata da una inaspettata morbidezza...', 'VINO_BIANCO', 'Sicilia', 2022, 26.00, 70, 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Sicilian_white_wine.jpg'),
+('Queto Grillo', 'Vino prodotto da uve grillo coltivate in biologico...', 'VINO_BIANCO', 'Sicilia', 2023, 12.00, 60, 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Grillo_wine.jpg'),
+('Trebbiano D’Abruzzo', 'Vino ricco, elegante, sapido e mediterraneo...', 'VINO_BIANCO', 'Abruzzo', 2018, 55.00, 70, 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Trebbiano_d%27Abruzzo.jpg'),
+('Franciacorta Brut', 'Franciacorta Brut Bosio ha un colore giallo paglierino...', 'SPUMANTE', 'Lombardia', 2020, 25.00, 60, 'https://upload.wikimedia.org/wikipedia/commons/3/34/Franciacorta.jpg'),
+('Asti Spumante', 'Da vigneti coltivati a Moscato bianco...', 'SPUMANTE', 'Piemonte', 2024, 14.00, 150, 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Asti_spumante_bottle.jpg'),
+('Lambrusco Di Sorbara', 'Vino rosso secco, frizzante...', 'SPUMANTE', 'Emilia-Romagna', 2022, 10.00, 130, 'https://upload.wikimedia.org/wikipedia/commons/1/19/Lambrusco.jpg'),
+('Moët & Chandon', 'Champagne francese brut...', 'SPUMANTE', 'Francia', 2022, 65.00, 20, 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Moet-Chandon-Champagne.jpg'),
+('Veuve Clicquot', 'Predomina il Pinot Noir che conferisce il forte carattere...', 'SPUMANTE', 'Francia', 2021, 55.00, 25, 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Veuve_Clicquot.jpg');

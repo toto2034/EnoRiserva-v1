@@ -55,8 +55,11 @@ public class ArticoliServlet extends HttpServlet {
             out.print("\"id\":" + a.getId() + ",");
             out.print("\"nome\":\"" + escapeJson(a.getNome()) + "\",");
             out.print("\"descrizione\":\"" + escapeJson(a.getDescrizione()) + "\",");
+            out.print("\"tipologia\":\"" + escapeJson(a.getTipologia()) + "\",");
+            out.print("\"regione\":\"" + escapeJson(a.getRegione()) + "\",");
+            out.print("\"annata\":" + a.getAnnata() + ",");
             out.print("\"prezzo\":" + a.getPrezzo() + ",");
-            out.print("\"quantitaDisponibile\":" + a.getQuantitaDisponibile());
+            out.print("\"quantita\":" + a.getQuantitaDisponibile());
             out.print(",\"img\":\"" + escapeJson(a.getImg()) + "\"");
             out.print("}");
             if (i < articoli.size() - 1) out.print(",");
