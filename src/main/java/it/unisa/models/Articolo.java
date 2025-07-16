@@ -11,6 +11,7 @@ public class Articolo {
     int quantitaDisponibile;
     String img;
 
+
     public Articolo(int id, String nome, String descrizione, String tipologia, String regione, int annata, double prezzo, int quantitaDisponibile, String img) {
         this.id = id;
         this.nome = nome;

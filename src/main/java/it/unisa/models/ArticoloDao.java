@@ -10,7 +10,7 @@ import java.util.List;
 public class ArticoloDao {
     public List<Articolo> getAll(Connection conn) throws SQLException {
         List<Articolo> list = new ArrayList<>();
-        String sql = "SELECT * FROM prodotti";
+        String sql = "SELECT * FROM Articolo";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -62,7 +62,7 @@ public class ArticoloDao {
     }
 
     public boolean delete(int id, Connection conn) throws SQLException {
-        String sql = "DELETE FROM prodotti WHERE id_prodotto = ?";
+        String sql = "DELETE FROM Articolo WHERE id_prodotto = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
