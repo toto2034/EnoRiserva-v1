@@ -30,11 +30,7 @@
                     </div>
                     <h2>Antonio Boccia</h2>
                     <p class="role">Studente</p>
-                    <div class="social-links">
-                        <a href="mailto:emanuele.cirillo@example.com"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    </div>
+
                 </div>
 
                 <div class="member-card">
@@ -43,11 +39,7 @@
                     </div>
                     <h2>Giuseppe Capriglione</h2>
                     <p class="role">Studente</p>
-                    <div class="social-links">
-                        <a href="mailto:cataldo.parente@example.com"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    </div>
+
                 </div>
 
                 <div class="member-card">
@@ -56,11 +48,7 @@
                     </div>
                     <h2>Armando Annunziata</h2>
                     <p class="role">Studente</p>
-                    <div class="social-links">
-                        <a href="mailto:alessandro.panico@example.com"><i class="fas fa-envelope"></i></a>
-                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    </div>
+
                 </div>
             </div>
 
