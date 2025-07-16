@@ -1,0 +1,91 @@
+DROP DATABASE IF EXISTS enoriserva;
+CREATE DATABASE IF NOT EXISTS enoriserva;
+USE enoriserva;
+
+CREATE TABLE utenti (
+    id_utente INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(30) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(50),
+    telefono VARCHAR(15),
+    nome VARCHAR(30),
+    cognome VARCHAR(30),
+    tipo ENUM('cliente', 'admin', 'owner')
+);
+
+CREATE TABLE metodo_di_pagamento (
+    id_utente INT PRIMARY KEY,
+    numerocarta VARCHAR(16) NOT NULL,
+    nometitolare VARCHAR(50) NOT NULL,
+    datascadenza DATE NOT NULL,
+    cvv VARCHAR(4) NOT NULL,
+    circuito ENUM('Mastercard', 'Visa'),
+
+    FOREIGN KEY (id_utente) REFERENCES utenti(id_utente)
+);
+
+CREATE TABLE ordine (
+    id_ordine INT PRIMARY KEY AUTO_INCREMENT,
+    id_utente INT NOT NULL,
+    stato ENUM('Pagato', 'Pagamento Rifiutato') NOT NULL,
+    costo_totale DECIMAL(10,2) NOT NULL,
+    costo_spedizione DECIMAL(10,2) NOT NULL,
+    data_ordine DATE NOT NULL,
+
+    FOREIGN KEY (id_utente) REFERENCES utenti(id_utente)
+);
+
+CREATE TABLE fattura (
+    id_ordine INT PRIMARY KEY,
+    pec VARCHAR(50) NOT NULL,
+    partita_iva VARCHAR(50) NOT NULL,
+    CUU VARCHAR(10) NOT NULL,
+    nome_societa VARCHAR(50) NOT NULL,
+
+    FOREIGN KEY (id_ordine) REFERENCES ordine(id_ordine)
+);
+
+CREATE TABLE indirizzo (
+    id_indirizzo INT PRIMARY KEY AUTO_INCREMENT,
+    id_utente INT NOT NULL,
+    via VARCHAR(100) NOT NULL,
+    citta VARCHAR(50) NOT NULL,
+    cap VARCHAR(10) NOT NULL,
+    stato VARCHAR(50) NOT NULL,
+    tipo ENUM('spedizione', 'fatturazione') NOT NULL,
+
+    FOREIGN KEY (id_utente) REFERENCES utenti(id_utente)
+);
+
+CREATE TABLE prodotti (
+    id_prodotto INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(30) NOT NULL,
+    descrizione VARCHAR(1000) NOT NULL,
+    tipologia ENUM('VINO_ROSSO', 'VINO_BIANCO', 'SPUMANTE') NOT NULL,
+    regione VARCHAR(30) NOT NULL,
+    annata YEAR NOT NULL,
+    prezzo DECIMAL(10,2) NOT NULL,
+    quantita INT NOT NULL,
+    img VARCHAR(1000) NOT NULL
+);
+
+CREATE TABLE carrello (
+    id_utente INT NOT NULL,
+    id_prodotto INT NOT NULL,
+    quantita INT NOT NULL,
+
+    PRIMARY KEY (id_utente, id_prodotto),
+    FOREIGN KEY (id_utente) REFERENCES utenti(id_utente),
+    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id_prodotto)
+);
+INSERT INTO utenti (username, password, email, telefono, nome, cognome, tipo)
+VALUES
+    ('armando', 'armando123', 'armando.annunziata@enoriserva.it', '3331112222', 'Armando', 'Annunziata', 'admin');
+INSERT INTO utenti (username, password, email, telefono, nome, cognome, tipo)
+VALUES
+    ('antonio', 'antonio123', 'antonio.boccia@esempio.it', '3339998888', 'Antonio', 'Boccia', 'cliente');
+INSERT INTO vini (nome, descrizione, categoria, regione, annata, prezzo, disponibilita, img) VALUES
+('Amarone della Valpolicella', 'Splendido colore granato...', 'VINO_ROSSO', 'Veneto', 2015, 20.00, 40, 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Amarone_red_wine.jpg'),
+('Montepulciano d’Abruzzo', 'Vino rosso morbido e fruttato...', 'VINO_ROSSO', 'Abruzzo', 2022, 16.00, 120, 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Montepulciano_D%27Abruzzo_wine_and_bottle.jpg'),
+('Monaco Rosso Taurasi', 'Il naso è aromatico, tostato...', 'VINO_ROSSO', 'Campania', 2015, 40.00, 80, 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Barolo_bottle.jpg'),
+('Chianti Classico', 'Prodotto nella zona di produzione più antica...', 'VINO_ROSSO', 'Toscana', 2019, 22.00, 50, 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Chianti_classico_bottle.jpg');
