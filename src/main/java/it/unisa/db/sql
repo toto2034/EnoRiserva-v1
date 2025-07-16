@@ -78,14 +78,6 @@ CREATE TABLE carrello (
     FOREIGN KEY (id_utente) REFERENCES utenti(id_utente),
     FOREIGN KEY (id_prodotto) REFERENCES prodotti(id_prodotto)
 );
-INSERT INTO utenti (username, password, email, telefono, nome, cognome, tipo)
-VALUES
-    ('armando', 'armando123', 'armando.annunziata@enoriserva.it', '3331112222', 'Armando', 'Annunziata', 'admin');
-INSERT INTO utenti (username, password, email, telefono, nome, cognome, tipo)
-VALUES
-    ('antonio', 'antonio123', 'antonio.boccia@esempio.it', '3339998888', 'Antonio', 'Boccia', 'cliente');
--- Aggiunta della colonna per l’immagine
-ALTER TABLE prodotti ADD COLUMN immagine_url TEXT;
 
 INSERT INTO prodotti (nome, descrizione, tipologia, regione, annata, prezzo, quantita, img)
 VALUES
