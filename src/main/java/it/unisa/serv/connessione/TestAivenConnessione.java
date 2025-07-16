@@ -7,9 +7,9 @@ import java.sql.Statement;
 
 public class TestAivenConnessione {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://sleeping-sleeping.i.aivencloud.com:27301/defaultdb?useSSL=true&serverTimezone=UTC";
-        String user = "avnadmin";
-        String password = "AVNS_9aPXZdw0m01m-Lucn4i";
+        String url = "";
+        String user = "";
+        String password = "";
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             System.out.println("✅ Connessione riuscita!");
