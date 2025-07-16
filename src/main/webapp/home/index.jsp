@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SleepingSmarttress - Home</title>
+    <title>EnoRiserva - Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -31,26 +31,26 @@
         <div class="hero-carousel">
             <div class="carousel-slides">
                 <div class="slide active">
-                    <img src="../images/banner.png" alt="Smart Mattress">
+                    <img src="../images/bannervino.png" alt="Smart Mattress">
                     <div class="slide-content">
                         <h1>EnoRiserva</h1>
-                        <p>Il sonno intelligente per una vita migliore</p>
+                        <p>Ogni sorso racconta una storia di passione</p>
                         <a href="#products" class="cta-btn">Scopri i Prodotti</a>
                     </div>
                 </div>
                 <div class="slide">
-                    <img src="../images/lettoBanner1.png" alt="Premium Quality">
+                    <img src="../images/sfondovinob.png" alt="Premium Quality">
                     <div class="slide-content">
-                        <h1>Qualit&agrave; Premium</h1>
-                        <p>Materiali di alta qualit&agrave; per il tuo comfort</p>
+                        <h1>Incanto Dorato</h1>
+                        <p>L essenza dell eleganza in un calice</p>
                         <a href="#products" class="cta-btn">Esplora la Gamma</a>
                     </div>
                 </div>
                 <div class="slide">
-                    <img src="../images/lettoBanner2.png" alt="Innovation">
+                    <img src="../images/vinoa.png" alt="Innovation">
                     <div class="slide-content">
-                        <h1>Innovazione e Tecnologia</h1>
-                        <p>Il futuro del riposo &egrave; qui con noi</p>
+                        <h1>Un Viaggio nei Sapori del Vino</h1>
+                        <p>Dal bianco piu fresco al rosso piu intenso</p>
                         <a href="#products" class="cta-btn">Scopri di Pi&ugrave;</a>
                     </div>
                 </div>
