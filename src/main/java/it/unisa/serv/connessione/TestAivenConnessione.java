@@ -10,7 +10,6 @@ public class TestAivenConnessione {
         String url = "";
         String user = "";
         String password = "";
-
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             System.out.println("✅ Connessione riuscita!");
             Statement stmt = conn.createStatement();
