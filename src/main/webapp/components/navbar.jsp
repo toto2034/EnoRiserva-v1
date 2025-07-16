@@ -7,7 +7,7 @@
     <div class="nav-container">
         <div class="logo-container">
             <img src="<%= ctx %>/images/logo.png" alt="Logo" class="logo-img">
-            <div class="logo-text">SleepingSmarttress</div>
+            <div class="logo-text">EnoRiserva</div>
         </div>
         <ul class="nav-links">
             <li><a href="<%= ctx %>/home/" class="<%= "home".equals(activePage) ? "active" : "" %>">Home</a></li>
