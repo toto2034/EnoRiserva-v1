@@ -28,8 +28,8 @@
                     <div class="member-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h2>Emanuele Cirillo</h2>
-                    <p class="role">Full-Stack Developer</p>
+                    <h2>Antonio Boccia</h2>
+                    <p class="role">Studente</p>
                     <div class="social-links">
                         <a href="mailto:emanuele.cirillo@example.com"><i class="fas fa-envelope"></i></a>
                         <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
@@ -41,8 +41,8 @@
                     <div class="member-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h2>Cataldo Parente</h2>
-                    <p class="role">Backend Developer</p>
+                    <h2>Giuseppe Capriglione</h2>
+                    <p class="role">Studente</p>
                     <div class="social-links">
                         <a href="mailto:cataldo.parente@example.com"><i class="fas fa-envelope"></i></a>
                         <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
@@ -54,8 +54,8 @@
                     <div class="member-image">
                         <i class="fas fa-user-circle"></i>
                     </div>
-                    <h2>Alessandro Panico</h2>
-                    <p class="role">Frontend Developer</p>
+                    <h2>Armando Annunziata</h2>
+                    <p class="role">Studente</p>
                     <div class="social-links">
                         <a href="mailto:alessandro.panico@example.com"><i class="fas fa-envelope"></i></a>
                         <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
