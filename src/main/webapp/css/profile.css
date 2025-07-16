@@ -1,0 +1,750 @@
+/* Profilo utente */
+.profile-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 32px 24px 40px 24px;
+    font-family: 'Montserrat', sans-serif;
+}
+.profile-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+    color: #bdbdbd;
+    margin-bottom: 16px;
+}
+.profile-sections {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 32px 0 24px 0;
+    flex-wrap: wrap;
+    padding: 0 10px;
+}
+.profile-tab {
+    background: #f5f5f5;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.95em;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    min-width: 100px;
+    text-align: center;
+}
+.profile-tab:hover, .profile-tab.active {
+    background: #2e3a59;
+    color: #fff;
+}
+.logout-btn {
+    background: #ff4d4f;
+    color: #fff;
+}
+.logout-btn:hover {
+    background: #d9363e;
+}
+#admin-tab {
+    display: none; /* Nascosto di default, mostrato solo per admin */
+    background: #ff6b35;
+    color: #fff;
+}
+#admin-tab:hover, #admin-tab.active {
+    background: #e55a2b;
+}
+.profile-content {
+    margin-top: 16px;
+}
+.profile-section {
+    display: none;
+    animation: fadeIn 0.3s;
+}
+.profile-section.active {
+    display: block;
+}
+.placeholder {
+    color: #888;
+    font-size: 1.1em;
+    margin-top: 12px;
+    text-align: center;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.profile-info {
+    background: #f8fafc;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(46,58,89,0.06);
+    padding: 28px 32px 20px 32px;
+    margin: 32px auto 0 auto;
+    max-width: 600px;
+    font-size: 1.15em;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    border-left: 4px solid #2e3a59;
+}
+.profile-info p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.08em;
+    letter-spacing: 0.2px;
+}
+.profile-info strong {
+    color: #2e3a59;
+    min-width: 110px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.08em;
+}
+.profile-info i {
+    color: #7b8bb7;
+    font-size: 1.1em;
+}
+.profile-info span {
+    color: #444;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.08em;
+}
+
+/* --- STORICO ORDINI --- */
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 18px;
+}
+.ordine-card {
+    background: #f8fafc;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(110,142,251,0.08);
+    padding: 18px 22px;
+    border-left: 4px solid #6e8efb;
+    transition: box-shadow 0.2s;
+}
+.ordine-card:hover {
+    box-shadow: 0 6px 18px rgba(110,142,251,0.16);
+}
+.ordine-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 1.08em;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #2e3a59;
+}
+.ordine-prodotti {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-left: 12px;
+}
+.ordine-prodotto {
+    display: flex;
+    gap: 18px;
+    font-size: 0.98em;
+    color: #444;
+    padding-left: 8px;
+    border-left: 2px solid #e3e8fd;
+}
+
+/* --- INDIRIZZI PROFILO --- */
+.address-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 18px;
+}
+.address-card {
+    background: #f8fafc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(110,142,251,0.08);
+    padding: 14px 18px;
+    border-left: 4px solid #a777e3;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+}
+.address-card button {
+    margin-right: 8px;
+    margin-top: 8px;
+    background: #6e8efb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 0.98em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.address-card button.address-delete-btn {
+    background: #ff4d4f;
+}
+.address-card button:hover {
+    background: #a777e3;
+}
+.address-card button.address-delete-btn:hover {
+    background: #d9363e;
+}
+.address-add-btn {
+    margin-top: 16px;
+    background: #6e8efb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.address-add-btn:hover {
+    background: #a777e3;
+}
+.address-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(110,142,251,0.10);
+    padding: 28px 32px 20px 32px;
+    margin-top: 24px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.address-form input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+.address-form button[type="submit"] {
+    background: #6e8efb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 0;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.address-form button[type="submit"]:hover {
+    background: #a777e3;
+}
+.address-form .address-cancel-btn {
+    background: #eee;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 0;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 4px;
+}
+.address-form .address-cancel-btn:hover {
+    background: #ccc;
+}
+
+/* --- ADMIN PANEL --- */
+.admin-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+.admin-icon {
+    font-size: 2.5em;
+    color: #ff6b35;
+    margin-bottom: 4px;
+}
+.admin-desc {
+    color: #888;
+    font-size: 1.08em;
+    margin: 0;
+    text-align: center;
+}
+.admin-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+.admin-prodotti-btn {
+    background: #2e3a59;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1.08em;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(46,58,89,0.08);
+}
+.admin-prodotti-btn i {
+    font-size: 1.1em;
+}
+.admin-prodotti-btn:hover {
+    background: #ff6b35;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(255,107,53,0.12);
+}
+.admin-feedback {
+    display: none;
+    margin: 0 auto 16px auto;
+    max-width: 400px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 1.08em;
+    text-align: center;
+    font-weight: 600;
+}
+.admin-feedback.success {
+    background: #e6f9ed;
+    color: #1a7f4e;
+    border: 1.5px solid #1a7f4e;
+}
+.admin-feedback.error {
+    background: #ffeaea;
+    color: #d9363e;
+    border: 1.5px solid #d9363e;
+}
+.prodotti-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 18px;
+}
+.prodotti-list.elenco {
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+}
+.prodotto-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(255,107,53,0.07);
+    padding: 18px 18px 14px 18px;
+    border-left: 4px solid #ff3d1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 260px;
+    max-width: 320px;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.prodotto-card:hover {
+    box-shadow: 0 8px 24px rgba(255,107,53,0.13);
+    transform: translateY(-2px) scale(1.02);
+}
+.prodotto-img-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.prodotto-img {
+    max-width: 120px;
+    max-height: 90px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(46,58,89,0.10);
+    background: #fff;
+}
+.prodotto-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+.prodotto-nome {
+    font-size: 1.15em;
+    color: #2e3a59;
+    font-weight: 700;
+}
+.prodotto-prezzo {
+    color: #ff6b35;
+    font-weight: 600;
+    font-size: 1.08em;
+}
+.prodotto-quantita {
+    color: #888;
+    font-size: 0.98em;
+}
+.prodotto-descrizione {
+    color: #444;
+    font-size: 0.98em;
+    margin-top: 2px;
+}
+.prodotto-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    width: 100%;
+    justify-content: flex-end;
+}
+.prodotto-card button {
+    background: #2e3a59;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 14px;
+    font-size: 1.08em;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 1px 4px rgba(46,58,89,0.08);
+}
+.prodotto-card button.prodotto-delete-btn {
+    background: #ff4d4f;
+}
+.prodotto-card button:hover {
+    background: #ff6b35;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(255,107,53,0.12);
+}
+.prodotto-card button.prodotto-delete-btn:hover {
+    background: #d9363e;
+}
+.prodotto-form {
+    background: #f8fafc;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(46,58,89,0.10);
+    padding: 24px 28px 18px 28px;
+    margin: 24px auto 0 auto;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    border-left: 4px solid #ff6b35;
+    animation: fadeIn 0.3s;
+}
+.prodotto-form-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+.prodotto-form-col {
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.prodotto-form label {
+    font-size: 0.98em;
+    color: #2e3a59;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+.prodotto-form input {
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1.5px solid #e3e8fd;
+    font-size: 1em;
+    margin-bottom: 8px;
+    background: #fff;
+    transition: border 0.2s;
+}
+.prodotto-form input:focus {
+    border: 1.5px solid #ff6b35;
+    outline: none;
+}
+.prodotto-form-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: flex-end;
+}
+.prodotto-form button[type="submit"] {
+    background: #2e3a59;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 1.08em;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(46,58,89,0.08);
+}
+.prodotto-form button[type="submit"]:hover {
+    background: #ff6b35;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(255,107,53,0.12);
+}
+.prodotto-form .prodotto-cancel-btn {
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 1.08em;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(255,77,79,0.08);
+}
+.prodotto-form .prodotto-cancel-btn:hover {
+    background: #d9363e;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(255,77,79,0.12);
+}
+.prodotto-card.elenco {
+    flex-direction: row;
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    border-left: 4px solid #ffe3d1;
+    box-shadow: 0 2px 8px rgba(255,107,53,0.07);
+    padding: 14px 24px;
+    background: #fff;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+    margin-bottom: 0;
+}
+.prodotto-card.elenco:not(:last-child) {
+    margin-bottom: 10px;
+    border-bottom: 1.5px solid #ffe3d1;
+}
+.prodotto-card.elenco .prodotto-img-box {
+    margin-bottom: 0;
+    margin-right: 24px;
+    min-width: 100px;
+}
+.prodotto-card.elenco .prodotto-details {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+    gap: 2px;
+}
+.prodotto-card.elenco .prodotto-actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 0;
+    margin-left: 18px;
+    justify-content: center;
+}
+
+/* MODALE */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30, 34, 40, 0.45);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s;
+}
+.modal-content {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(46,58,89,0.18);
+    padding: 18px 16px 14px 16px;
+    min-width: 260px;
+    max-width: 420px;
+    min-height: 0;
+    position: relative;
+    animation: modalPop 0.25s;
+}
+@keyframes modalPop {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.modal-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #ff6b35;
+    cursor: pointer;
+    transition: color 0.2s;
+    z-index: 10;
+    line-height: 1;
+}
+.modal-close-btn:hover {
+    color: #d9363e;
+}
+#modal-form-container {
+    margin-top: 10px;
+}
+
+/* === ADMIN ORDINI: FILTRI E TABELLA === */
+#ordini-admin-filtri {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+}
+
+#ordini-admin-filtri label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-weight: 600;
+    color: #2e3a59;
+    font-size: 0.95em;
+}
+
+#ordini-admin-filtri select,
+#ordini-admin-filtri input[type="date"] {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-family: 'Montserrat', sans-serif;
+    background: #fff;
+    min-width: 150px;
+}
+
+#ordini-admin-filtri select:focus,
+#ordini-admin-filtri input[type="date"]:focus {
+    outline: none;
+    border-color: #6e8efb;
+    box-shadow: 0 0 0 3px rgba(110, 142, 251, 0.1);
+}
+
+#applica-filtri,
+#reset-filtri {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#applica-filtri {
+    background: #6e8efb;
+    color: #fff;
+}
+
+#applica-filtri:hover {
+    background: #5a7ce8;
+    transform: translateY(-1px);
+}
+
+#reset-filtri {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+#reset-filtri:hover {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+#ordini-admin-tabella {
+    margin-top: 16px;
+}
+
+.admin-ordini-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+}
+
+.admin-ordini-table thead {
+    background: #2e3a59;
+    color: #fff;
+}
+
+.admin-ordini-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+    border-bottom: 2px solid #1e2a3a;
+}
+
+.admin-ordini-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
+
+.admin-ordini-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.admin-ordini-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Responsive per la tabella */
+@media (max-width: 768px) {
+    #ordini-admin-filtri {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #ordini-admin-filtri label {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    #ordini-admin-filtri select,
+    #ordini-admin-filtri input[type="date"] {
+        min-width: auto;
+        flex: 1;
+    }
+    
+    .admin-ordini-table {
+        font-size: 0.8em;
+    }
+    
+    .admin-ordini-table th,
+    .admin-ordini-table td {
+        padding: 8px 10px;
+    }
+    
+    /* Nascondi colonne meno importanti su mobile */
+    .admin-ordini-table th:nth-child(4),
+    .admin-ordini-table td:nth-child(4) {
+        display: none;
+    }
+}
