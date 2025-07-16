@@ -58,7 +58,7 @@
     text-decoration: none;
 }
 .nav-links a.active, .nav-links a:hover {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg, #990F02, #D4AF37);
     color: #fff;
 }
 

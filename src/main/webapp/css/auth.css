@@ -74,7 +74,7 @@ body {
 }
 
 .auth-form button {
-    background: linear-gradient(90deg, #6c63ff 0%, #48c6ef 100%);
+    background: linear-gradient(90deg,  #990F02, #D4AF37 100%);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -256,7 +256,7 @@ body {
 }
 
 .welcome-modal-btn {
-    background: linear-gradient(90deg, #6c63ff 0%, #6c63ff 100%);
+    background: linear-gradient(90deg,  #990F02, #D4AF37 100%);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -268,7 +268,7 @@ body {
     font-family: 'Montserrat', Arial, sans-serif;
 }
 .welcome-modal-btn:hover {
-    background: linear-gradient(90deg, #48c6ef 0%, #6c63ff 100%);
+    background: linear-gradient(90deg,  #990F02, #D4AF37);
     transform: translateY(-2px) scale(1.03);
 }
 

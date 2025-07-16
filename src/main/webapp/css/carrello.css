@@ -44,7 +44,7 @@
     color: #333;
 }
 .cart-checkout-btn {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg,  #990F02, #D4AF37);
     color: #fff;
     border: none;
     padding: 14px 36px;
@@ -56,6 +56,6 @@
     box-shadow: 0 4px 10px rgba(110, 142, 251, 0.10);
 }
 .cart-checkout-btn:hover {
-    background: linear-gradient(135deg, #a777e3, #6e8efb);
+    background: linear-gradient(135deg,  #990F02, #D4AF37);
     transform: translateY(-2px) scale(1.03);
 }

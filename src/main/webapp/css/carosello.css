@@ -60,7 +60,7 @@
 .cta-btn {
     display: inline-block;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg,  #990F02, #D4AF37);
     color: white;
     text-decoration: none;
     border-radius: 50px;
@@ -121,7 +121,7 @@
 
 /* CAROSELLO */
 .carousel-card {
-    background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+    background: linear-gradient(135deg,  #990F02, #D4AF37 100%);
     border-radius: 36px;
     box-shadow: 0 4px 32px rgba(110,142,251,0.18);
     padding: 38px 32px 32px 32px;

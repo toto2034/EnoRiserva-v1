@@ -63,7 +63,7 @@ body {
 }
 
 .search-button {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg, #990F02, #D4AF37);
     border: none;
     width: 50px;
     height: 50px;
@@ -98,7 +98,7 @@ body {
 
 .product-filter span:hover,
 .product-filter span.active {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg,  #990F02, #D4AF37);
     color: white;
     border-color: transparent;
 }
@@ -430,7 +430,7 @@ body {
 }
 .product-filter span.active,
 .product-filter span:hover {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg, #990F02, #D4AF37);
     color: #fff;
     border: 1.5px solid #a777e3;
     transform: translateY(-2px) scale(1.04);
@@ -467,7 +467,7 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 .search-button {
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg,  #990F02, #D4AF37);
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -483,6 +483,6 @@ body {
     box-shadow: 0 2px 8px rgba(110,142,251,0.10);
 }
 .search-button:hover {
-    background: linear-gradient(135deg, #a777e3, #6e8efb);
+    background: linear-gradient(135deg,  #990F02, #D4AF37);
     transform: scale(1.08);
 }

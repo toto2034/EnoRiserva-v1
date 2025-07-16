@@ -214,7 +214,7 @@
 
 .btn-add-cart {
     flex: 1;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg,  #990F02, #D4AF37);
     color: white;
     border: none;
     padding: 18px 30px;
@@ -372,7 +372,7 @@
 
 .btn-submit-review {
     margin-top: 10px;
-    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    background: linear-gradient(135deg,  #990F02, #D4AF37);
     color: white;
     border: none;
     padding: 12px 25px;
