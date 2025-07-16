@@ -50,11 +50,9 @@
                 <div class="product-filter" style="flex:1;min-width:60%;">
                     <strong>Filtra per:</strong>
                     <span class="active">Tutti</span>
-                    <span>VINO_ROSSO</span>
-                    <span>VINO_BIANCO</span>
+                    <span>VINO ROSSO</span>
+                    <span>VINO BIANCO</span>
                     <span>SPUMANTE</span>
-                    <span>Cashmere</span>
-                    <span>Lattice</span>
                 </div>
                 
                 <!-- Opzioni di ordinamento -->
