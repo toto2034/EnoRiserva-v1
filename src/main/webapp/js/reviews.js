@@ -15,43 +15,43 @@ class ReviewsManager {
     generateBaseReviews() {
         const reviewTemplates = [
             {
-                text: "Prodotto fantastico! La qualità è eccezionale e il comfort è davvero notevole. Lo consiglio vivamente.",
+                text: "Vino fantastico! La qualità è eccezionale e l'equilibrio al palato è davvero notevole. Lo consiglio vivamente.",
                 sentiment: "positive"
             },
             {
-                text: "Molto soddisfatto dell'acquisto. Buon rapporto qualità-prezzo, anche se il tempo di consegna è stato leggermente più lungo del previsto.",
+                text: "Molto soddisfatto dell'acquisto. Ottimo rapporto qualità-prezzo, anche se la consegna è stata un po' lenta, ma ne è valsa la pena.",
                 sentiment: "positive"
             },
             {
-                text: "Eccellente! Esattamente come descritto. Il materiale è di alta qualità e il design è molto elegante.",
+                text: "Eccellente! Esattamente come descritto nella scheda. Un vino di grande struttura e complessità, con un'etichetta molto elegante.",
                 sentiment: "positive"
             },
             {
-                text: "Prodotto nella media. Funziona bene ma non eccezionale. Il prezzo è giusto per quello che offre.",
+                text: "Un vino nella media. Piacevole da bere ma senza particolari picchi di eccellenza. Il prezzo è corretto per la qualità offerta.",
                 sentiment: "neutral"
             },
             {
-                text: "Buona qualità generale, ma ho trovato alcuni piccoli difetti nel materiale. Nel complesso sono soddisfatto.",
+                text: "Buona qualità generale, anche se l'ho trovato un po' sbilanciato sull'acidità. Nel complesso una bottiglia interessante.",
                 sentiment: "neutral"
             },
             {
-                text: "Ottimo acquisto! Supera le aspettative. Il comfort è incredibile e la qualità costruttiva è evidente.",
+                text: "Ottima bottiglia! Ha superato le mie aspettative. Incredibilmente piacevole al palato, con una complessità di aromi evidente fin dal primo sorso.",
                 sentiment: "positive"
             },
             {
-                text: "Discreto, ma mi aspettavo qualcosa di più. Il prodotto funziona ma non è eccezionale come sperato.",
+                text: "Vino discreto, ma mi aspettavo qualcosa di più data la denominazione. Si lascia bere, ma non lascia il segno come speravo.",
                 sentiment: "neutral"
             },
             {
-                text: "Fantastico! Uno dei migliori acquisti che abbia mai fatto. Comfort straordinario e qualità premium.",
+                text: "Fantastico! Una delle migliori etichette che abbia assaggiato quest'anno. Un'esperienza di degustazione straordinaria, qualità premium evidente.",
                 sentiment: "positive"
             },
             {
-                text: "Buon prodotto ma il servizio clienti potrebbe migliorare. Il prodotto in sé è comunque valido.",
+                text: "Buon vino, ma l'imballaggio era un po' rovinato. La bottiglia in sé, per fortuna, era integra e all'altezza delle aspettative.",
                 sentiment: "neutral"
             },
             {
-                text: "Qualità eccellente e comfort impareggiabile. Vale ogni euro speso. Consigliatissimo!",
+                text: "Qualità eccellente e un'eleganza al palato impareggiabile. Vale ogni euro speso. Consigliatissimo agli amanti del buon vino!",
                 sentiment: "positive"
             }
         ];
