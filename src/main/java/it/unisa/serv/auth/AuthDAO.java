@@ -172,7 +172,6 @@ public class AuthDAO extends HttpServlet {
                 jwtCookie.setPath("/");
                 jwtCookie.setHttpOnly(true); // Per sicurezza
                 response.addCookie(jwtCookie);
-                
                 // Debug info sessione e token
                 System.out.println("\n=== DEBUG SESSIONE ===");
                 System.out.println("ID Sessione: " + session.getId());
