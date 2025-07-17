@@ -631,29 +631,3 @@ window.proceedToCheckout = function () {
         showLoginPrompt();
     }
 };
-/*
-// FUNZIONE DI TEST - Aggiungi prodotto direttamente al server
-window.testAddToServer = function() {
-    console.log("=== TEST AGGIUNTA PRODOTTO AL SERVER ===");
-    fetch('/SleepingSmarttress/cart', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        credentials: 'include',
-        body: 'productId=1&quantity=1'
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Risposta aggiunta prodotto:", data);
-        if (data.success) {
-            console.log("Prodotto aggiunto con successo, ricarico carrello...");
-            renderCart();
-        } else {
-            console.error("Errore nell'aggiunta:", data.error);
-        }
-    })
-    .catch(error => {
-        console.error("Errore test aggiunta:", error);
-    });
-};*/

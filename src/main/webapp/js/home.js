@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Immagine grande in alto
             const img = document.createElement('img');
-            img.src = articolo.img || '../images/letto1.png';
+            img.src = articolo.img || '../images/vino1.png';
             img.alt = articolo.nome;
             img.onerror = function() { this.src = '../images/product-placeholder.jpg'; };
             img.className = 'product-image-large';
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     nome: articolo.nome,
                     descrizione: articolo.descrizione || 'Descrizione non disponibile',
                     prezzo: articolo.prezzo,
-                    immagine: articolo.img || '../images/letto1.png'
+                    immagine: articolo.img || '../images/vino1.png'
                 };
                 if (typeof window.addToWishlist === 'function') {
                     const success = window.addToWishlist(wishlistItem);
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     descrizione: articolo.descrizione || 'Descrizione non disponibile',
                     prezzo: articolo.prezzo,
                     quantita: 1,
-                    immagine: articolo.img || '../images/letto1.png'
+                    immagine: articolo.img || '../images/vino1.png'
                 };
                 if (typeof window.addToCart === 'function') {
                     try { 
