@@ -38,7 +38,7 @@ public class ArticoloById extends javax.servlet.http.HttpServlet {
                             rs.getString("regione"),
                             rs.getInt("annata"),
                             rs.getDouble("prezzo"),
-                            rs.getInt("quantita"),
+                            rs.getInt("quantitaDisponibile"),
                             rs.getString("img")
                     );
                     

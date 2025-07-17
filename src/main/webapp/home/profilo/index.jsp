@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../css/carrello.css">
     <link rel="stylesheet" href="../../css/navbar.css">
     <link rel="stylesheet" href="../../css/wishlist.css">
-    <title>Profilo - SleepingSmarttress</title>
+    <title>Profilo - EnoRiserva</title>
     <style>
       html, body { height: 100%; margin: 0; padding: 0; }
       body { min-height: 100vh; display: flex; flex-direction: column; }

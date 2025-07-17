@@ -9,12 +9,12 @@ function createProductCard(articolo) {
     const card = document.createElement('div');
     card.className = 'product-card clickable-card';
     card.tabIndex = 0;
-    card.onclick = function(e) {
+    card.onclick = function (e) {
         // Evita che il click sui bottoni propaghi
         if (e.target.closest('.card-btn')) return;
         window.location.href = `/EnoRiserva-v1/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
     };
-    card.onkeydown = function(e) {
+    card.onkeydown = function (e) {
         if (e.key === 'Enter') {
             window.location.href = `/EnoRiserva-v1/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
         }
@@ -24,7 +24,9 @@ function createProductCard(articolo) {
     const img = document.createElement('img');
     img.src = articolo.img || '../../images/letto1.png';
     img.alt = articolo.nome;
-    img.onerror = function() { this.src = '../../images/product-placeholder.jpg'; };
+    img.onerror = function () {
+        this.src = '../../images/product-placeholder.jpg';
+    };
     img.className = 'product-image-large';
     card.appendChild(img);
 
@@ -67,7 +69,7 @@ function createProductCard(articolo) {
     wishlistBtn.setAttribute('data-product-id', articolo.id);
     wishlistBtn.innerHTML = '<i class="fas fa-heart"></i>';
     wishlistBtn.title = 'Aggiungi ai preferiti';
-    wishlistBtn.onclick = function(e) {
+    wishlistBtn.onclick = function (e) {
         e.preventDefault();
         e.stopPropagation();
         const wishlistItem = {
@@ -92,7 +94,7 @@ function createProductCard(articolo) {
     cartBtn.setAttribute('data-product-id', articolo.id);
     cartBtn.innerHTML = '<i class="fas fa-shopping-cart"></i>';
     cartBtn.title = 'Aggiungi al carrello';
-    cartBtn.onclick = function(e) {
+    cartBtn.onclick = function (e) {
         e.preventDefault();
         e.stopPropagation();
         const cartItem = {
@@ -105,15 +107,15 @@ function createProductCard(articolo) {
         };
         console.log('DEBUG - Aggiunta al carrello:', cartItem);
         if (typeof window.addToCart === 'function') {
-            try { 
-                const success = window.addToCart(cartItem); 
+            try {
+                const success = window.addToCart(cartItem);
                 if (success) {
                     cartBtn.classList.add('active');
                     cartBtn.innerHTML = '<i class="fas fa-shopping-cart" style="color: #4CAF50;"></i>';
                     cartBtn.title = 'Prodotto già nel carrello';
                 }
-            } catch(e) { 
-                alert('Errore carrello: ' + e.message); 
+            } catch (e) {
+                alert('Errore carrello: ' + e.message);
             }
         } else {
             alert('Funzione carrello non disponibile.');
@@ -130,23 +132,23 @@ function createProductCard(articolo) {
 function displayCurrentPage() {
     const productList = document.getElementById('product-list');
     productList.innerHTML = ''; // Pulisci la lista
-    
+
     // Calcola gli indici per la pagina corrente
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = Math.min(startIndex + itemsPerPage, filteredProducts.length);
-    
+
     // Mostra solo i prodotti per la pagina corrente
     for (let i = startIndex; i < endIndex; i++) {
         const card = createProductCard(filteredProducts[i]);
         productList.appendChild(card);
     }
-    
+
     // Se non ci sono prodotti
     if (filteredProducts.length === 0) {
-        productList.innerHTML = 
+        productList.innerHTML =
             '<p style="text-align:center;color:#666;margin-top:30px;">Nessun prodotto trovato. Prova a cambiare i filtri.</p>';
     }
-    
+
     // Nascondi l'indicatore di caricamento
     if (document.getElementById('loading-indicator')) {
         document.getElementById('loading-indicator').style.display = 'none';
@@ -158,7 +160,7 @@ function updatePagination() {
     const totalPages = Math.ceil(totalProducts / itemsPerPage);
     const pageNumbers = document.getElementById('page-numbers');
     pageNumbers.innerHTML = '';
-    
+
     // Crea i numeri di pagina
     for (let i = 1; i <= totalPages; i++) {
         const pageNum = document.createElement('button');
@@ -169,38 +171,38 @@ function updatePagination() {
         pageNum.style.border = 'none';
         pageNum.style.borderRadius = '5px';
         pageNum.style.cursor = 'pointer';
-        
+
         if (i === currentPage) {
             pageNum.style.backgroundColor = '#6e8efb';
             pageNum.style.color = '#fff';
         } else {
             pageNum.style.backgroundColor = '#f0f0f0';
-            pageNum.addEventListener('click', function() {
+            pageNum.addEventListener('click', function () {
                 currentPage = i;
                 displayCurrentPage();
                 updatePagination();
             });
         }
-        
+
         pageNumbers.appendChild(pageNum);
     }
-    
+
     // Aggiorna i pulsanti prev/next
     const prevBtn = document.getElementById('prev-page');
     const nextBtn = document.getElementById('next-page');
-    
+
     prevBtn.disabled = currentPage === 1;
     nextBtn.disabled = currentPage === totalPages || totalPages === 0;
-    
-    prevBtn.onclick = function() {
+
+    prevBtn.onclick = function () {
         if (currentPage > 1) {
             currentPage--;
             displayCurrentPage();
             updatePagination();
         }
     };
-    
-    nextBtn.onclick = function() {
+
+    nextBtn.onclick = function () {
         if (currentPage < totalPages) {
             currentPage++;
             displayCurrentPage();
@@ -210,18 +212,15 @@ function updatePagination() {
 }
 
 // Inizializza la pagina
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('loading-indicator')) {
         document.getElementById('loading-indicator').style.display = 'block';
     }
-    
+
     // --- FETCH ARTICOLI E POPOLA LE CARD ---
     let articoliData = [];
     fetch('/EnoRiserva-v1/articoli')
-        console.log("Fetch fatta")
-        .then(response => response.json())
         .then(data => {
-            console.log(data);
             articoliData = data;
             filteredProducts = data;
             totalProducts = data.length;
@@ -240,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterOptions = document.querySelectorAll('.product-filter span');
     let filtroAttivo = null;
     filterOptions.forEach(option => {
-        option.addEventListener('click', function() {
+        option.addEventListener('click', function () {
             const filtro = this.textContent.trim().toLowerCase();
             if (filtroAttivo === filtro) {
                 filtroAttivo = null;
@@ -286,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- BARRA DI RICERCA LIVE AJAX ---
     const searchInput = document.querySelector('.search-input');
     const searchForm = document.querySelector('.search-form');
-    searchForm.addEventListener('submit', function(e) {
+    searchForm.addEventListener('submit', function (e) {
         e.preventDefault();
     });
     searchInput.addEventListener('input', function () {
@@ -310,12 +309,12 @@ document.addEventListener('DOMContentLoaded', function() {
         displayCurrentPage();
         updatePagination();
     });
-    
+
     // Gestione dell'ordinamento
     const sortSelect = document.getElementById('sort-select');
-    sortSelect.addEventListener('change', function() {
+    sortSelect.addEventListener('change', function () {
         const sort = this.value;
-        
+
         // Ordina i prodotti filtrati
         if (sort === 'price-asc') {
             filteredProducts.sort((a, b) => a.prezzo - b.prezzo);
@@ -326,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (sort === 'name-desc') {
             filteredProducts.sort((a, b) => b.nome.localeCompare(a.nome));
         }
-        
+
         // Aggiorna la visualizzazione con i prodotti ordinati
         currentPage = 1;
         displayCurrentPage();

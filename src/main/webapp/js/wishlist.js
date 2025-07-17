@@ -234,7 +234,7 @@ if (typeof window !== 'undefined') {
                 }
                 
                 // Naviga alla scheda prodotto
-                window.location.href = `/SleepingSmarttress/home/catalogo/articolo/?id=${item.id}`;
+                window.location.href = `/EnoRiserva-v1/home/catalogo/articolo/?id=${item.id}`;
             });
 
             // Event listeners per i bottoni

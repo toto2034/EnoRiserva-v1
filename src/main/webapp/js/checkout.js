@@ -38,7 +38,7 @@ function getCartItems() {
                         userLoggedIn === 'on' || userLoggedIn === '1'));
                                 
         if (isAuth) {
-            fetch('/SleepingSmarttress/api/cart/get', {
+            fetch('/EnoRiserva-v1/api/cart/get', {
                 method: 'GET',
                 credentials: 'include',
                 headers: { 'Cache-Control': 'no-cache' }
@@ -164,7 +164,7 @@ function emptyCartAndRedirect(callback) {
     
     if (isAuth) {
         // Utente loggato: svuota carrello nel database
-        fetch('/SleepingSmarttress/api/cart/clear', { 
+        fetch('/EnoRiserva-v1/api/cart/clear', {
             method: 'DELETE', 
             credentials: 'include' 
         })
@@ -190,7 +190,7 @@ function emptyCartAndRedirect(callback) {
 }
 
 function caricaIndirizziUtente() {
-    fetch('/SleepingSmarttress/indirizzo/lista', {
+    fetch('/EnoRiserva-v1/indirizzo/lista', {
         method: 'GET',
         credentials: 'include'
     })
@@ -468,7 +468,7 @@ function salvaNuovoIndirizzo(event) {
             formData.append(el.name, el.value);
         }
     }
-    fetch('/SleepingSmarttress/indirizzo/nuovo', {
+    fetch('/EnoRiserva-v1/indirizzo/nuovo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -604,7 +604,7 @@ function creaOrdineBackend() {
         console.log('Dati da inviare al server:', formData.toString());
         
         // Invia alla servlet
-        fetch('/SleepingSmarttress/ordine/crea', {
+        fetch('/EnoRiserva-v1/ordine/crea', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -646,12 +646,12 @@ function creaOrdineBackend() {
                     console.error('Utente non loggato, redirect al login');
                     mostraOrderErrorModal('Devi essere loggato per completare l\'ordine. Verrai reindirizzato alla pagina di login.');
                     setTimeout(() => {
-                        window.location.href = '/SleepingSmarttress/home/auth/';
+                        window.location.href = '/EnoRiserva-v1/home/auth/';
                     }, 2000);
                     return;
                 }
                 
-                fetch('/SleepingSmarttress/utenti/userbyid?username=' + encodeURIComponent(username))
+                fetch('/EnoRiserva-v1/utenti/userbyid?username=' + encodeURIComponent(username))
                     .then(res => res.json())
                     .then(userData => {
                         console.log('Dati utente recuperati:', userData);
@@ -684,10 +684,10 @@ function creaOrdineBackend() {
                             // Svuota carrello e redirect DOPO l'invio email
                             emptyCartAndRedirect(function() {
                                 if (metodoPagamento === 'CARTA') {
-                                    window.location.href = '/SleepingSmarttress/home/carrello/conferma_acquisto/?ordine=' + data.idOrdine + '&dom=false';
+                                    window.location.href = '/EnoRiserva-v1/home/carrello/conferma_acquisto/?ordine=' + data.idOrdine + '&dom=false';
                                     return;
                                 }else if(metodoPagamento === 'DOMICILIO') {
-                                    window.location.href = '/SleepingSmarttress/home/carrello/conferma_acquisto/?ordine=' + data.idOrdine+ '&dom=true';
+                                    window.location.href = '/EnoRiserva-v1/home/carrello/conferma_acquisto/?ordine=' + data.idOrdine+ '&dom=true';
                                     return;
                                 }
                             });

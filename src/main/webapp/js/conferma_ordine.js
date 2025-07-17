@@ -37,7 +37,7 @@ function avviaRedirectHome() {
 
         if (secondi < 0) {
             clearInterval(interval);
-            window.location.href = '/SleepingSmarttress/home/';
+            window.location.href = '/EnoRiserva-v1/home/';
         }
     }, 1000);
 

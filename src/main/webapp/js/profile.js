@@ -485,7 +485,7 @@ function caricaClientiAdmin() {
 }
 
 function caricaOrdiniAdmin() {
-    return fetch('/SleepingSmarttress/admin/ordini')
+    return fetch('/EnoRiserva-v1/admin/ordini')
         .then(res => res.json())
         .then(ordini => {
             ordiniAdminCache = ordini;
