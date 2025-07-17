@@ -84,12 +84,9 @@
             </div>
             <div class="product-filter">
                 <strong>Ordina per:</strong>
-                <span>Smarttess</span>
-                <span>Smartpillow</span>
-                <span>MemoryFoam</span>
-                <span>Molle</span>
-                <span>Cashmere</span>
-                <span>Lattice</span>
+                <span>VinoRosso</span>
+                <span>VinoBianco</span>
+                <span>Champagne</span>
             </div>
 
             <div class="product-list" id="product-list">

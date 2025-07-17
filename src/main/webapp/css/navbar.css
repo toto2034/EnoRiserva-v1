@@ -32,7 +32,7 @@
 .logo-text {
     font-size: 1.5em;
     font-weight: 700;
-    color: #6e8efb;
+    color: #D4AF37;
     letter-spacing: 1px;
     text-decoration: none;
 }
@@ -71,7 +71,7 @@
 .hamburger span {
     height: 3px;
     width: 26px;
-    background: #6e8efb;
+    background: #D4AF37;
     margin: 4px 0;
     border-radius: 2px;
     display: block;
@@ -161,7 +161,7 @@
   align-self: flex-end;
   cursor: pointer;
   margin-bottom: 1rem;
-  color: #6e8efb;
+  color: #D4AF37;
   transition: color 0.2s;
 }
 .close-btn:hover {
@@ -184,7 +184,7 @@
 }
 .menu-list a.active,
 .menu-list a:hover {
-  color: #6e8efb !important;
+  color: #D4AF37 !important;
 }
 @media (min-width: 901px) {
   .mobile-menu,
