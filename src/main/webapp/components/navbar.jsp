@@ -1,14 +1,14 @@
-<% 
-    String ctx = request.getContextPath(); 
+<%
+    String ctx = request.getContextPath();
     String activePage = (String) request.getAttribute("activePage");
     if (activePage == null) activePage = "";
 %>
+
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo-container">
-            <img src="<%= ctx %>/images/logo.png" alt="Logo" class="logo-img">
-            <div class="logo-text">EnoRiserva</div>
-        </div>
+            <img src="<%= ctx %>/images/logo.png" alt="Logo" class="logo-img"></div>
+
         <ul class="nav-links">
             <li><a href="<%= ctx %>/home/" class="<%= "home".equals(activePage) ? "active" : "" %>">Home</a></li>
             <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>

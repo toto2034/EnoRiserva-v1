@@ -12,11 +12,11 @@ function createProductCard(articolo) {
     card.onclick = function(e) {
         // Evita che il click sui bottoni propaghi
         if (e.target.closest('.card-btn')) return;
-        window.location.href = `/SleepingSmarttress/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
+        window.location.href = `/EnoRiserva-v1/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
     };
     card.onkeydown = function(e) {
         if (e.key === 'Enter') {
-            window.location.href = `/SleepingSmarttress/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
+            window.location.href = `/EnoRiserva-v1/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
         }
     };
 
@@ -217,9 +217,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- FETCH ARTICOLI E POPOLA LE CARD ---
     let articoliData = [];
-    fetch('/SleepingSmarttress/articoli')
+    fetch('/EnoRiserva-v1/articoli')
+        console.log("Fetch fatta")
         .then(response => response.json())
         .then(data => {
+            console.log(data);
             articoliData = data;
             filteredProducts = data;
             totalProducts = data.length;
@@ -253,12 +255,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 filterOptions.forEach(opt => opt.classList.remove('active'));
                 this.classList.add('active');
                 let filtered = [];
-                if (filtro === 'smarttress') {
-                    filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('smart'));
-                } else if (filtro === 'smartpillow') {
-                    filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('pillow'));
-                } else if (filtro === 'memoryfoam') {
-                    filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('memory'));
+                if (filtro === 'VINO ROSSO') {
+                    filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('rosso'));
+                } else if (filtro === 'VINO BIANCO') {
+                    filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('bianco'));
+                } else if (filtro === 'SPUMANTE') {
+                    filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('spumante'));
                 } else if (filtro === 'molle') {
                     filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('molle'));
                 } else if (filtro === 'cashmere') {

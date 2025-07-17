@@ -47,6 +47,9 @@ public class ArticoloById extends javax.servlet.http.HttpServlet {
                             + "\"id\":" + articolo.getId() + ","
                             + "\"nome\":\"" + articolo.getNome() + "\","
                             + "\"descrizione\":\"" + articolo.getDescrizione() + "\","
+                            + "\"tipologia\":\"" + articolo.getTipologia() + "\","
+                            + "\"regione\":\"" + articolo.getRegione() + "\","
+                            + "\"annata\":\"" + articolo.getAnnata() + "\","
                             + "\"prezzo\":" + articolo.getPrezzo() + ","
                             + "\"quantitaDisponibile\":" + articolo.getQuantitaDisponibile()
                             + ",\"img\":\"" + articolo.getImg() + "\""

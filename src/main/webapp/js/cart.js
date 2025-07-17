@@ -47,7 +47,7 @@ if (typeof window !== 'undefined') {
     function addToCartDatabase(product) {
         const quantity = product.quantita || 1;
         
-        fetch('/SleepingSmarttress/api/cart/add', {
+        fetch('/EnoRiserva-v1/api/cart/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -158,7 +158,7 @@ if (typeof window !== 'undefined') {
 
         if (isAuth) {
             // Utente loggato: carica contatore dal database
-            fetch('/SleepingSmarttress/api/cart/get', {
+            fetch('/EnoRiserva-v1/api/cart/get', {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -262,7 +262,7 @@ if (typeof window !== 'undefined') {
 
         if (isAuth) {
             // Utente loggato: controlla nel database
-            fetch('/SleepingSmarttress/api/cart/get', {
+            fetch('/EnoRiserva-v1/api/cart/get', {
                 method: 'GET',
                 credentials: 'include'
             })
@@ -392,7 +392,7 @@ function syncLocalCartToServer() {
         quantita: item.quantita
     }));
     const cartJson = JSON.stringify(cartData);
-    return fetch('/SleepingSmarttress/api/cart/sync', {
+    return fetch('/EnoRiserva-v1/api/cart/sync', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -403,7 +403,7 @@ function syncLocalCartToServer() {
 }
 
 function actuallyLoadCartFromServer(cartContentElement) {
-    fetch('/SleepingSmarttress/api/cart/get', {
+    fetch('/EnoRiserva-v1/api/cart/get', {
         method: 'GET',
         credentials: 'include'
     })
@@ -591,7 +591,7 @@ window.updateServerQuantity = function(productId, change) {
         removeServerItem(productId);
         return;
     }
-    fetch(`/SleepingSmarttress/api/cart/update/${productId}?quantity=${newQuantity}`, {
+    fetch(`/EnoRiserva-v1/api/cart/update/${productId}?quantity=${newQuantity}`, {
         method: 'PUT',
         credentials: 'include'
     })
@@ -604,7 +604,7 @@ window.updateServerQuantity = function(productId, change) {
 };
 
 window.removeServerItem = function(productId) {
-    fetch(`/SleepingSmarttress/api/cart/remove/${productId}`, {
+    fetch(`/EnoRiserva-v1/api/cart/remove/${productId}`, {
         method: 'DELETE',
         credentials: 'include'
     })
@@ -619,13 +619,13 @@ window.removeServerItem = function(productId) {
 // === FUNZIONI GENERALI ===
 window.showLoginPrompt = function() {
     if (confirm('Devi effettuare il login per procedere. Vuoi andare alla pagina di login?')) {
-        window.location.href = '/SleepingSmarttress/home/auth/';
+        window.location.href = '/EnoRiserva-v1/home/auth/';
     }
 };
 
 window.proceedToCheckout = function () {
     if (typeof userLoggedIn !== 'undefined' && userLoggedIn === 'true') {
-        window.location.href = '/SleepingSmarttress/home/carrello/checkout/';
+        window.location.href = '/EnoRiserva-v1/home/carrello/checkout/';
 
     } else {
         showLoginPrompt();

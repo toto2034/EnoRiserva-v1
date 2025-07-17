@@ -21,7 +21,7 @@
             <div class="auth-card slider-card" id="auth-slider">
                 <div class="form-wrapper login-wrapper active" id="login-wrapper">
                     <h1 style="text-align:center;font-family:'Montserrat',sans-serif;font-size:2.5em;margin-top:40px;letter-spacing:1px;font-weight:700;">Accedi</h1>
-                    <form id="login-form" action="/SleepingSmarttress/auth/login" method="post" class="auth-form">
+                    <form id="login-form" action="/EnoRiserva-v1/auth/login" method="post" class="auth-form">
                         <label for="login-username">Username:</label>
                         <input type="text" id="login-username" name="username" required>
                         <label for="login-password">Password:</label>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-wrapper register-wrapper" id="register-wrapper">
                     <h1 style="text-align:center;font-family:'Montserrat',sans-serif;font-size:2.5em;margin-top:40px;letter-spacing:1px;font-weight:700;">Registrati</h1>
-                    <form action="/SleepingSmarttress/auth/register" method="post" class="auth-form" id="register-form">
+                    <form action="/EnoRiserva-v1/auth/register" method="post" class="auth-form" id="register-form">
                         <label for="register-username">Username:</label>
                         <input type="text" id="register-username" name="username" required>
                         <label for="register-nome">Nome:</label>

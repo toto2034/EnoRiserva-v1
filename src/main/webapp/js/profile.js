@@ -9,7 +9,7 @@ if (window.username) {
 }
 
 if (username) {
-    fetch(`/SleepingSmarttress/utenti/userbyid?username=${encodeURIComponent(username)}`)
+    fetch(`/EnoRiserva-v1/utenti/userbyid?username=${encodeURIComponent(username)}`)
         .then(res => res.json())
         .then(data => {
             const container = document.getElementById('user-profile-data');
@@ -72,7 +72,7 @@ tabs.forEach(tab => {
                 window.logout();
             } else {
                 // Fallback: redirect
-                window.location.href = '/SleepingSmarttress/home/';
+                window.location.href = '/EnoRiserva-v1/home/';
             }
         }
     });
@@ -85,7 +85,7 @@ function caricaStoricoOrdini() {
     container.className = 'orders-list';
     section.innerHTML = '<h2>Storico Ordini</h2>';
     section.appendChild(container);
-    fetch('/SleepingSmarttress/ordine/storico')
+    fetch('/EnoRiserva-v1/ordine/storico')
         .then(res => res.json())
         .then(ordini => {
             if (!Array.isArray(ordini) || ordini.length === 0) {
@@ -147,7 +147,7 @@ function caricaIndirizzi() {
     const container = document.createElement('div');
     container.className = 'address-list';
     section.appendChild(container);
-    fetch('/SleepingSmarttress/indirizzo/lista')
+    fetch('/EnoRiserva-v1/indirizzo/lista')
         .then(res => res.json())
         .then(indirizzi => {
             if (!Array.isArray(indirizzi) || indirizzi.length === 0) {
@@ -193,7 +193,7 @@ function mostraFormIndirizzo(section, indirizzo = null) {
         const formData = new FormData(form);
         if (indirizzo) formData.append('id', indirizzo.id);
         const data = new URLSearchParams(formData);
-        let url = indirizzo ? '/SleepingSmarttress/indirizzo/gestione' : '/SleepingSmarttress/indirizzo/nuovo';
+        let url = indirizzo ? '/EnoRiserva-v1/indirizzo/gestione' : '/EnoRiserva-v1/indirizzo/nuovo';
         let method = 'POST';
         fetch(url, {
             method,
@@ -255,7 +255,7 @@ function mostraListaProdotti() {
     if (oldList) oldList.remove();
     let oldSearch = section.querySelector('.admin-search-container');
     if (oldSearch) oldSearch.remove();
-    fetch('/SleepingSmarttress/admin/prodotti')
+    fetch('/EnoRiserva-v1/admin/prodotti')
         .then(res => res.json())
         .then(prodotti => {
             prodottiCache = prodotti;
@@ -361,7 +361,7 @@ function mostraFormProdotto(section, prodotto = null) {
         const formData = new FormData(form);
         if (prodotto) formData.append('id', prodotto.id);
         const data = new URLSearchParams(formData);
-        let url = '/SleepingSmarttress/admin/prodotti';
+        let url = '/EnoRiserva-v1/admin/prodotti';
         let method = 'POST';
         fetch(url, {
             method,
@@ -392,7 +392,7 @@ function chiudiModaleProdotto() {
 
 function eliminaProdotto(id) {
     mostraModaleConferma('Sei sicuro di voler eliminare questo prodotto?', function() {
-        fetch(`/SleepingSmarttress/admin/prodotti?id=${id}`, { method: 'DELETE' })
+        fetch(`/EnoRiserva-v1/admin/prodotti?id=${id}`, { method: 'DELETE' })
             .then(res => res.json())
             .then(r => {
                 if (r.success) {
@@ -467,7 +467,7 @@ let ordiniAdminCache = [];
 let clientiAdminCache = [];
 
 function caricaClientiAdmin() {
-    return fetch('/SleepingSmarttress/utenti')
+    return fetch('/EnoRiserva-v1/utenti')
         .then(res => res.json())
         .then(clienti => {
             clientiAdminCache = clienti;

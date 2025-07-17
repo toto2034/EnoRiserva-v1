@@ -23,9 +23,10 @@ public class ArticoliServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Articolo> articoli = new ArrayList<>();
+        System.out.println("Sono qui servlet");
         try (Connection conn = ConnectionManager.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM prodotti")) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM Articolo")) {
 
             while (rs.next()) {
                 Articolo a = new Articolo(
@@ -36,12 +37,14 @@ public class ArticoliServlet extends HttpServlet {
                         rs.getString("regione"),
                         rs.getInt("annata"),
                         rs.getDouble("prezzo"),
-                        rs.getInt("quantita"),
+                        rs.getInt("quantitaDisponibile"),
                         rs.getString("img")
                 );
+                System.out.println(a);
                 articoli.add(a);
             }
         } catch (SQLException e) {
+            System.out.println("Errore SQL: " + e.getMessage());
             throw new ServletException(e);
         }
 

@@ -21,7 +21,7 @@ public class ArticoloDao {
     }
 
     public Articolo getById(int id, Connection conn) throws SQLException {
-        String sql = "SELECT * FROM Articolo WHERE id_prodotto = ?";
+        String sql = "SELECT * FROM Articolo WHERE id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -31,7 +31,7 @@ public class ArticoloDao {
     }
 
     public boolean insert(Articolo a, Connection conn) throws SQLException {
-        String sql = "INSERT INTO Articolo (nome, descrizione, tipologia, regione, annata, prezzo, quantita, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Articolo (nome, descrizione, tipologia, regione, annata, prezzo, quantitaDisponibile, img) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, a.getNome());
             ps.setString(2, a.getDescrizione());
@@ -46,7 +46,7 @@ public class ArticoloDao {
     }
 
     public boolean update(Articolo a, Connection conn) throws SQLException {
-        String sql = "UPDATE Articolo SET nome=?, descrizione=?, tipologia=?, regione=?, annata=?, prezzo=?, quantita=?, img=? WHERE id_prodotto=?";
+        String sql = "UPDATE Articolo SET nome=?, descrizione=?, tipologia=?, regione=?, annata=?, prezzo=?, quantitaDisponibile=?, img=? WHERE id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, a.getNome());
             ps.setString(2, a.getDescrizione());
@@ -62,7 +62,7 @@ public class ArticoloDao {
     }
 
     public boolean delete(int id, Connection conn) throws SQLException {
-        String sql = "DELETE FROM Articolo WHERE id_prodotto = ?";
+        String sql = "DELETE FROM Articolo WHERE id = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             return ps.executeUpdate() > 0;
@@ -78,7 +78,7 @@ public class ArticoloDao {
             rs.getString("regione"),
             rs.getInt("annata"),
             rs.getDouble("prezzo"),
-            rs.getInt("quantita"),
+            rs.getInt("quantitaDisponibile"),
             rs.getString("img")
         );
     }

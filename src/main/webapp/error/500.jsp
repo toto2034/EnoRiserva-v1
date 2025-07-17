@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>500 - Errore interno del server | SleepingSmarttress</title>
+    <title>500 - Errore interno del server </title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="/SleepingSmarttress/css/home_style.css">
-    <link rel="stylesheet" href="/SleepingSmarttress/css/navbar.css">
+    <link rel="stylesheet" href="/EnoRiserva-v1/css/home_style.css">
+    <link rel="stylesheet" href="/EnoRiserva-v1/css/navbar.css">
     <style>
         body {
             min-height: 100vh;
@@ -73,7 +73,7 @@
             Puoi tornare alla home o riprovare più tardi.
         </div>
         <div class="error-500-actions">
-            <a href="/SleepingSmarttress/">Home</a>
+            <a href="/EnoRiserva-v1/">Home</a>
             <a href="javascript:location.reload();">Ricarica pagina</a>
         </div>
     </div>

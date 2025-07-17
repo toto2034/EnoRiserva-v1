@@ -2,97 +2,95 @@ DROP DATABASE IF EXISTS enoriserva;
 CREATE DATABASE IF NOT EXISTS enoriserva;
 USE enoriserva;
 
-CREATE TABLE utenti (
-    id_utente INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(30) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(50),
-    telefono VARCHAR(15),
-    nome VARCHAR(30),
-    cognome VARCHAR(30),
-    tipo ENUM('cliente', 'admin', 'owner')
+CREATE TABLE Utente (
+    username VARCHAR(50) PRIMARY KEY,
+    cognome VARCHAR(50) NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    password VARCHAR(128),
+    tipo ENUM('Amministratore','Cliente') NOT NULL
 );
 
-CREATE TABLE metodo_di_pagamento (
-    id_utente INT PRIMARY KEY,
-    numerocarta VARCHAR(16) NOT NULL,
-    nometitolare VARCHAR(50) NOT NULL,
-    datascadenza DATE NOT NULL,
-    cvv VARCHAR(4) NOT NULL,
-    circuito ENUM('Mastercard', 'Visa'),
-
-    FOREIGN KEY (id_utente) REFERENCES utenti(id_utente)
-);
-
-CREATE TABLE ordine (
-    id_ordine INT PRIMARY KEY AUTO_INCREMENT,
-    id_utente INT NOT NULL,
-    stato ENUM('Pagato', 'Pagamento Rifiutato') NOT NULL,
-    costo_totale DECIMAL(10,2) NOT NULL,
-    costo_spedizione DECIMAL(10,2) NOT NULL,
-    data_ordine DATE NOT NULL,
-
-    FOREIGN KEY (id_utente) REFERENCES utenti(id_utente)
-);
-
-CREATE TABLE fattura (
-    id_ordine INT PRIMARY KEY,
-    pec VARCHAR(50) NOT NULL,
-    partita_iva VARCHAR(50) NOT NULL,
-    CUU VARCHAR(10) NOT NULL,
-    nome_societa VARCHAR(50) NOT NULL,
-
-    FOREIGN KEY (id_ordine) REFERENCES ordine(id_ordine)
-);
-
-CREATE TABLE indirizzo (
-    id_indirizzo INT PRIMARY KEY AUTO_INCREMENT,
-    id_utente INT NOT NULL,
-    via VARCHAR(100) NOT NULL,
-    citta VARCHAR(50) NOT NULL,
+CREATE TABLE Indirizzo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cognome VARCHAR(100) NOT NULL,
+    via VARCHAR(200) NOT NULL,
+    numeroCivico VARCHAR(20),
+    citta VARCHAR(100) NOT NULL,
     cap VARCHAR(10) NOT NULL,
-    stato VARCHAR(50) NOT NULL,
-    tipo ENUM('spedizione', 'fatturazione') NOT NULL,
-
-    FOREIGN KEY (id_utente) REFERENCES utenti(id_utente)
+    provincia VARCHAR(50) NOT NULL,
+    username VARCHAR(100) NOT NULL,
+    FOREIGN KEY (username) REFERENCES Utente(username)
 );
 
-CREATE TABLE prodotti (
-    id_prodotto INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(30) NOT NULL,
+CREATE TABLE Ordine (
+    idOrdine INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL,
+    totale DECIMAL(10,2) NOT NULL,
+    dataOrdine TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    idIndirizzo INT NOT NULL,
+    metodoPagamento VARCHAR(50) NOT NULL,
+    stato VARCHAR(20) DEFAULT 'CONFERMATO',
+    FOREIGN KEY (username) REFERENCES Utente(username),
+    FOREIGN KEY (idIndirizzo) REFERENCES Indirizzo(id)
+);
+
+CREATE TABLE Articolo (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
     descrizione VARCHAR(1000) NOT NULL,
-    tipologia ENUM('VINO_ROSSO', 'VINO_BIANCO', 'SPUMANTE') NOT NULL,
+	tipologia ENUM('VINO_ROSSO', 'VINO_BIANCO', 'SPUMANTE') NOT NULL,
     regione VARCHAR(30) NOT NULL,
     annata YEAR NOT NULL,
     prezzo DECIMAL(10,2) NOT NULL,
+    quantitaDisponibile INT NOT NULL,
+    img VARCHAR(255)
+);
+-- aggiunto
+	-- tipologia ENUM('VINO_ROSSO', 'VINO_BIANCO', 'SPUMANTE') NOT NULL,
+	-- regione VARCHAR(30) NOT NULL,
+	-- annata YEAR NOT NULL,
+    -- prezzo DECIMAL(10,2) NOT NULL,
+    -- quantitaDisponibile INT NOT NULL,
+
+CREATE TABLE OrdineDettaglio (
+    idDettaglio INT AUTO_INCREMENT PRIMARY KEY,
+    idOrdine INT NOT NULL,
+    idProdotto INT NOT NULL,
+    nomeProdotto VARCHAR(200) NOT NULL,
     quantita INT NOT NULL,
-    img VARCHAR(1000) NOT NULL
+    prezzo DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (idOrdine) REFERENCES Ordine(idOrdine) ON DELETE CASCADE,
+    FOREIGN KEY (idProdotto) REFERENCES Articolo(id)
 );
 
-CREATE TABLE carrello (
-    id_utente INT NOT NULL,
-    id_prodotto INT NOT NULL,
-    quantita INT NOT NULL,
-
-    PRIMARY KEY (id_utente, id_prodotto),
-    FOREIGN KEY (id_utente) REFERENCES utenti(id_utente),
-    FOREIGN KEY (id_prodotto) REFERENCES prodotti(id_prodotto)
+CREATE TABLE Carrello (
+    username VARCHAR(50) NOT NULL,
+    id_articolo INT NOT NULL,
+    quantita INT NOT NULL DEFAULT 1,
+    data_aggiunta TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_modifica TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (username, id_articolo),
+    FOREIGN KEY (username) REFERENCES Utente(username),
+    FOREIGN KEY (id_articolo) REFERENCES Articolo(id)
 );
 
-INSERT INTO prodotti (nome, descrizione, tipologia, regione, annata, prezzo, quantita, img)
+
+INSERT INTO Articolo (nome, descrizione, tipologia, regione, annata, prezzo, quantitaDisponibile)
 VALUES
-('Amarone della Valpolicella', 'Splendido colore granato. Aromi di barbabietola arrosto, rosmarino, pomodoro essiccato al sole e fichi maturi con un palato rotondo, vibrante e fruttato. Sapori di riduzione di melograno, cioccolato e caffè fresco. Finale saporito, oliva nera. Un Amarone equilibrato, complesso e dal fascino rustico.', 'VINO_ROSSO', 'Veneto', 2015, 20.00, 40, 'https://upload.wikimedia.org/wikipedia/commons/6/6f/Amarone_red_wine.jpg'),
-('Montepulciano D’Abruzzo', 'Vino rosso morbido e fruttato...', 'VINO_ROSSO', 'Abruzzo', 2022, 16.00, 120, 'https://upload.wikimedia.org/wikipedia/commons/8/8f/Montepulciano_D%27Abruzzo_wine_and_bottle.jpg'),
-('Monaco Rosso Taurasi', 'Il naso è aromatico, tostato...', 'VINO_ROSSO', 'Campania', 2015, 40.00, 80, 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Barolo_bottle.jpg'),
-('Chianti Classico', 'Prodotto nella zona di produzione più antica...', 'VINO_ROSSO', 'Toscana', 2019, 22.00, 50, 'https://upload.wikimedia.org/wikipedia/commons/d/d2/Chianti_classico_bottle.jpg'),
-('Cannubi Barolo', 'Colore rubino scuro brillante...', 'VINO_ROSSO', 'Piemonte', 2020, 160.00, 40, 'https://upload.wikimedia.org/wikipedia/commons/4/47/Barolo_Vineyards_and_Wine_Bottle.jpg'),
-('Fiano D’Avellino', 'Nel calice questo vino è colore giallo paglierino...', 'VINO_BIANCO', 'Campania', 2022, 25.00, 90, 'https://upload.wikimedia.org/wikipedia/commons/f/f6/Fiano_di_Avellino.jpg'),
-('Greco Di Tufo', 'Particolarmente fruttato e di facile riconoscimento...', 'VINO_BIANCO', 'Campania', 2021, 13.50, 110, 'https://upload.wikimedia.org/wikipedia/commons/5/58/Greco_di_Tufo_Cantina.jpg'),
-('Elisena', 'Buona acidità supportata da una inaspettata morbidezza...', 'VINO_BIANCO', 'Sicilia', 2022, 26.00, 70, 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Sicilian_white_wine.jpg'),
-('Queto Grillo', 'Vino prodotto da uve grillo coltivate in biologico...', 'VINO_BIANCO', 'Sicilia', 2023, 12.00, 60, 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Grillo_wine.jpg'),
-('Trebbiano D’Abruzzo', 'Vino ricco, elegante, sapido e mediterraneo...', 'VINO_BIANCO', 'Abruzzo', 2018, 55.00, 70, 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Trebbiano_d%27Abruzzo.jpg'),
-('Franciacorta Brut', 'Franciacorta Brut Bosio ha un colore giallo paglierino...', 'SPUMANTE', 'Lombardia', 2020, 25.00, 60, 'https://upload.wikimedia.org/wikipedia/commons/3/34/Franciacorta.jpg'),
-('Asti Spumante', 'Da vigneti coltivati a Moscato bianco...', 'SPUMANTE', 'Piemonte', 2024, 14.00, 150, 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Asti_spumante_bottle.jpg'),
-('Lambrusco Di Sorbara', 'Vino rosso secco, frizzante...', 'SPUMANTE', 'Emilia-Romagna', 2022, 10.00, 130, 'https://upload.wikimedia.org/wikipedia/commons/1/19/Lambrusco.jpg'),
-('Moët & Chandon', 'Champagne francese brut...', 'SPUMANTE', 'Francia', 2022, 65.00, 20, 'https://upload.wikimedia.org/wikipedia/commons/1/1f/Moet-Chandon-Champagne.jpg'),
-('Veuve Clicquot', 'Predomina il Pinot Noir che conferisce il forte carattere...', 'SPUMANTE', 'Francia', 2021, 55.00, 25, 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Veuve_Clicquot.jpg');
+    ('Amarone della Valpolicella', 'Splendido colore granato. Aromi di barbabietola arrosto, rosmarino, pomodoro essiccato al sole e fichi maturi con un palato rotondo, vibrante e fruttato. Sapori di riduzione di melograno, cioccolato e caffè fresco. Finale saporito, oliva nera. Un Amarone equilibrato, complesso e dal fascino rustico.', 'VINO_ROSSO', 'Veneto', 2015, 20.00, 100),
+    ('Montepulciano D’Abruzzo', 'Vino rosso morbido e fruttato. Al naso si apre con sentori di frutta rossa, ciliegia, prugna e amarena, seguiti da leggeri ricordi speziati e di sottobosco.', 'VINO_ROSSO', 'Abruzzo', 2022, 16.00, 100),
+    ('Monaco Rosso Taurasi', 'Il naso è aromatico, tostato e offre gourmandize. Rivela note di caramellizzazione, baccello di vaniglia, piccole note di piccoli frutti neri polposi/succosi associate a un tocco di canfora, noce moscata, discreti sentori di nocciola e tè nero. Al palato è fruttato e offre succosità, mineralità, una bella cornice acidula, gourmandize, una bella tensione oltre a una certa purezza aromatica. Al palato questo vino esprime note di piccoli frutti a bacca nera brillante, mora, piccole note di viola associate a piccoli tocchi di cassis, canfora, giglio oltre a sentori di fiori di timo, cacao, tabacco, un sottile accenno di tè nero, caramellizzazione e liquirizia. Buona lunghezza.', 'VINO_ROSSO', 'Campania', 2015, 40.00, 100),
+    ('Chianti Classico', 'Prodotto nella zona di produzione più antica, come recita il disciplinare che la regola, questa zona ha dato il nome al vino ed è la sola dove si produce il Chianti Classico. Si estende tra Firenze e Siena in un territorio di struggente bellezza, fatto di borghi arroccati sulla cima dei colli, di olivi coltivati in campi scoscesi dal contorno irregolare e di cipressi messi in fila a delimitare le innumerevoli strade bianche.', 'VINO_ROSSO', 'Toscana', 2019, 22.00, 100),
+    ('Cannubi Barolo', 'Colore rubino scuro brillante con bordo schiarente. Al naso, inizialmente timido, si apre lentamente su note di prugne e frutti di bosco, seguite da sentori speziati di cannella, caffè e cuoio. Al palato è dolcemente fruttato e vellutato, con una buona freschezza e succosità che si sviluppano nel corso della degustazione. I tannini sono fini e avvolgenti, donando una piacevole struttura.', 'VINO_ROSSO', 'Piemonte', 2020, 160.00, 100),
+    ('Fiano D’Avellino', 'Nel calice questo vino è colore giallo paglierino, con delicati riflessi verdognoli. Al naso si presenta fine e delicato ma al tempo stesso persistente e intenso con note fruttate, floreali, minerali e vegetali. Risaltano in particolare gli aromi di fiori di arancia, cedro, mandorle fresche ed erbe aromatiche che con il tempo evolvono in profumi di nocciole tostate, frutta secca e sentori di idrocarburi. In bocca il gusto è secco, fresco, sapido e di lunga persistenza aromatica.', 'VINO_BIANCO', 'Campania', 2022, 25.00, 100),
+    ('Greco Di Tufo', 'Particolarmente fruttato e di facile riconoscimento il vitigno al gusto. Con colori gialli paglierini intensi con presenze olfattive di pesca gialla, mela golden e mentuccia che ne risalta la freschezza al palato. Gusto altrettanto strutturato e complesso, sa avvolgere il palato ma anche rinfrescarlo.', 'VINO_BIANCO', 'Campania', 2021, 13.50, 100),
+    ('Elisena', 'Buona acidità supportata da una inaspettata morbidezza, fresco, beverino, dal finale molto lungo e complesso con sentori di frutta fresca.', 'VINO_BIANCO', 'Sicilia', 2022, 26.00, 100),
+    ('Queto Grillo', 'Vino prodotto da uve grillo coltivate in biologico nella tenuta di Sambuca di Sicilia, in provincia di Agrigento. Il vigneto è inerbito e cresce su suoli calcarei a circa 200 metri all’ombra di una meravigliosa cava di tufo, accarezzato dai venti che arrivano dal vicino mediterraneo.', 'VINO_BIANCO', 'Sicilia', 2023, 12.00, 100),
+    ('Trebbiano D’Abruzzo', 'Il Trebbiano d’Abruzzo “Vigneto di Popoli” è un vino ricco, elegante, sapido e mediterraneo, nato da un unico vigneto sull’appennino abruzzese e affinato per 18 mesi in acciaio. L’assaggio è intenso, caldo, avvolgente, di viva sapidità e freschezza, contrassegnato da sensazioni di agrumi, fiori, frutta e tante erbe aromatiche.', 'VINO_BIANCO', 'Abruzzo', 2018, 55.00, 100),
+    ('Franciacorta Brut', 'Franciacorta Brut Bosio ha un colore giallo paglierino con lievi riflessi verdognoli, presenta un bouquet tipico di profumi floreali e lieviti; al palato si presenta morbido, fresco e complesso.', 'SPUMANTE', 'Lombardia', 2020, 25.00, 100),
+    ('Asti Spumante', 'Da vigneti coltivati a Moscato bianco, su terreno ricco di calcare, si ottengono le uve per produrre questo Asti spumante dai caratteri finemente aromatici. Il “perlage” continuo, la spuma persistente, preludono al profumo ampio e intenso che ricorda i fiori d’arancio e la salvia. Il sapore dolce e invitante è attenuato da un’acidità stimolante.', 'SPUMANTE', 'Piemonte', 2024, 14.00, 100),
+    ('Lambrusco Di Sorbara', 'Vino rosso secco, frizzante, di bel colore chiaro e di corposità equilibrata, con spuma appena rosata ed assai fine ottenuta da una lunga fermentazione naturale di uve Lambrusco di Sorbara dal profumo tipico e fruttato.', 'SPUMANTE', 'Emilia-Romagna', 2022, 10.00, 100),
+    ('Moët & Chandon', 'Champagne francese brut, di colore oro con riflessi ambrati. Note di noce di anacardio, nocciola tostata e pan pepato. Gusto raffinato, tenero e incisivo.', 'SPUMANTE', 'Francia', 2022, 65.00, 100),
+    ('Veuve Clicquot', 'Predomina il Pinot Noir che conferisce il forte carattere, mentre lo Chardonnay e il Pinot Meunier, in percentuale minore gli regalano eleganza e morbidezza. Color paglierino intenso, ha finissime bollicine che risalgono il calice. Olfatto che regala note di frutta matura ed essiccata, pan brioche, croccante alle mandorle e spezie dolci.', 'SPUMANTE', 'Francia', 2021, 55.00, 100);

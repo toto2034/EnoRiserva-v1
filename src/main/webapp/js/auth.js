@@ -31,10 +31,10 @@ function logout() {
         window.username = null;
     }
     // Logout lato server
-    fetch('/SleepingSmarttress/auth/logout', { method: 'POST' })
+    fetch('/EnoRiserva-v1/auth/logout', { method: 'POST' })
         .finally(() => {
             // Redirect alla home
-            window.location.href = '/SleepingSmarttress/home/';
+            window.location.href = '/EnoRiserva-v1/home/';
         });
 }
 
@@ -43,7 +43,7 @@ function handleJWTError() {
     console.log("Token JWT non valido rilevato, eseguo logout automatico...");
     clearCorruptedJWT();
     alert("La tua sessione è scaduta. Effettua nuovamente il login.");
-    window.location.href = '/SleepingSmarttress/home/';
+    window.location.href = '/EnoRiserva-v1/home/';
 }
 
 // Gestione del form di login
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (oldMessage) oldMessage.remove();
             
             // Invia richiesta di login
-            fetch('/SleepingSmarttress/auth/login', {
+            fetch('/EnoRiserva-v1/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -134,7 +134,7 @@ function showWelcomeModal(nome, redirect) {
     modal.className = 'welcome-modal';
     modal.innerHTML = `
         <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 700; color: #2d3a4b;">Benvenuto ${nome}!</h2>
-        <p style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: #2d3a4b;">Grazie per esserti registrato!<br>Effettua il login per iniziare ad acquistare su SleepingSmarttress</p>
+        <p style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; color: #2d3a4b;">Grazie per esserti registrato!<br>Effettua il login per iniziare ad acquistare su EnoRiserva</p>
         <button class="welcome-modal-btn">Vai al Login</button>
     `;
     overlay.appendChild(modal);
@@ -142,7 +142,7 @@ function showWelcomeModal(nome, redirect) {
 
     // Gestione click bottone
     modal.querySelector('.welcome-modal-btn').onclick = function() {
-        window.location.href = '/SleepingSmarttress/home/auth/';
+        window.location.href = '/EnoRiserva-v1/home/auth/';
     };
 }
 
@@ -153,7 +153,7 @@ function syncLocalCartToServer(redirectUrl) {
         try {
             const fullCart = JSON.parse(localCart);
             const simplifiedCart = fullCart.map(item => ({ id: item.id, quantita: item.quantita }));
-            fetch('/SleepingSmarttress/api/cart/sync', {
+            fetch('/EnoRiserva-v1/api/cart/sync', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const formData = new FormData(registerForm);
-            fetch('/SleepingSmarttress/auth/register', {
+            fetch('/EnoRiserva-v1/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

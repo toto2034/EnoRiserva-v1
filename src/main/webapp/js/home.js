@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- FETCH ARTICOLI E POPOLA LE CARD ---
     let articoliData = [];
-    fetch('/SleepingSmarttress/articoli')
+    fetch('/EnoRiserva-v1/articoli')
         .then(response => response.json())
         .then(data => {
             articoliData = data;
@@ -90,11 +90,11 @@ document.addEventListener('DOMContentLoaded', function () {
             card.tabIndex = 0;
             card.onclick = function(e) {
                 if (e.target.closest('.card-btn')) return;
-                window.location.href = `/SleepingSmarttress/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
+                window.location.href = `/EnoRiserva-v1/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
             };
             card.onkeydown = function(e) {
                 if (e.key === 'Enter') {
-                    window.location.href = `/SleepingSmarttress/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
+                    window.location.href = `/EnoRiserva-v1/home/catalogo/articolo/index.jsp?id=${articolo.id}`;
                 }
             };
 

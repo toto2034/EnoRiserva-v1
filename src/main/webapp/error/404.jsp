@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Pagina non trovata | SleepingSmarttress</title>
+    <title>404 - Pagina non trovata </title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="/SleepingSmarttress/css/home_style.css">
-    <link rel="stylesheet" href="/SleepingSmarttress/css/navbar.css">
+    <link rel="stylesheet" href="/EnoRiserva-v1/css/home_style.css">
+    <link rel="stylesheet" href="/EnoRiserva-v1/css/navbar.css">
     <style>
         body {
             min-height: 100vh;
@@ -72,8 +72,8 @@
             Torna alla home o esplora il nostro catalogo.
         </div>
         <div class="error-404-actions">
-            <a href="/SleepingSmarttress/home">Home</a>
-            <a href="/SleepingSmarttress/home/catalogo/">Catalogo</a>
+            <a href="/EnoRiserva-v1/home">Home</a>
+            <a href="/EnoRiserva-v1/home/catalogo/">Catalogo</a>
         </div>
     </div>
     <jsp:include page="/components/footer.jsp" />

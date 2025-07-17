@@ -25,7 +25,7 @@ function loadArticle(id) {
     console.log('Caricamento articolo con ID:', id);
     
     // Usa la servlet corretta
-    fetch(`/SleepingSmarttress/articoli/${id}`)
+    fetch(`/EnoRiserva-v1/articoli/${id}`)
         .then(response => {
             console.log('Risposta servlet status:', response.status);
             if (!response.ok) {
@@ -43,7 +43,7 @@ function loadArticle(id) {
             
             // Forza il campo img se non presente
             if (!articolo.img) {
-                articolo.img = '/SleepingSmarttress/images/letto1.png';
+                articolo.img = '/EnoRiserva-v1/images/letto1.png';
             }
             
             currentArticle = articolo; // Salva l'articolo globalmente
@@ -56,7 +56,7 @@ function loadArticle(id) {
 }
 
 function displayArticle(articolo) {
-    document.title = articolo.nome + ' - SleepingSmarttress';
+    document.title = articolo.nome + ' - EnoRiserva-v1';
     
     // Nascondi il loading
     document.getElementById('loading').style.display = 'none';
@@ -77,8 +77,8 @@ function createProductLayout(articolo) {
     const breadcrumb = document.createElement('nav');
     breadcrumb.className = 'breadcrumb';
     breadcrumb.innerHTML = `
-        <a href="/SleepingSmarttress/home/">Home</a> > 
-        <a href="/SleepingSmarttress/home/catalogo/">Catalogo</a> > 
+        <a href="/EnoRiserva-v1/home/">Home</a> > 
+        <a href="/EnoRiserva-v1/home/catalogo/">Catalogo</a> > 
         <span>${articolo.nome}</span>
     `;
     
@@ -121,14 +121,14 @@ function createImagesSection(articolo) {
     
     const mainImage = document.createElement('div');
     mainImage.className = 'main-image';
-    mainImage.innerHTML = `<img src="${imageUrl}" alt="${articolo.nome}" onerror="this.src='/SleepingSmarttress/images/letto1.png';">`;
+    mainImage.innerHTML = `<img src="${imageUrl}" alt="${articolo.nome}" onerror="this.src='/EnoRiserva-v1/images/letto1.png';">`;
     
     const gallery = document.createElement('div');
     gallery.className = 'image-gallery';
     gallery.innerHTML = `
-        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/SleepingSmarttress/images/letto1.png';">
-        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/SleepingSmarttress/images/letto1.png';">
-        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/SleepingSmarttress/images/letto1.png';">
+        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/letto1.png';">
+        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/letto1.png';">
+        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/letto1.png';">
     `;
     
     section.appendChild(mainImage);
@@ -343,7 +343,7 @@ function addCurrentProductToCart() {
         descrizione: currentArticle.descrizione,
         prezzo: currentArticle.prezzo,
         quantita: quantity,
-        immagine: currentArticle.img || "/SleepingSmarttress/images/letto1.png" // Usa immagine dal DB
+        immagine: currentArticle.img || "/EnoRiserva-v1/images/letto1.png" // Usa immagine dal DB
     };
     
     console.log('Aggiungendo prodotto al carrello:', productToAdd);
@@ -425,7 +425,7 @@ function addCurrentProductToWishlist() {
 
 // Funzione per tornare al catalogo
 function goBack() {
-    window.location.href = '/SleepingSmarttress/home/catalogo/';
+    window.location.href = '/EnoRiserva-v1/home/catalogo/';
 }
 
 // Funzioni per la gestione della quantità

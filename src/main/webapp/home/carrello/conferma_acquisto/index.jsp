@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acquisto Confermato - SleepingSmarttress</title>
+    <title>Acquisto Confermato </title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
             </div>
             <div class="support-text">
                 &#128231; Riceverai una <strong>mail di conferma</strong> con i dettagli dell&rsquo;ordine entro pochi minuti.<br>
-                &#127919; Per qualsiasi necessit&agrave; contatta il nostro <a href="mailto:supporto@sleepingsmarttress.it">servizio clienti</a>.
+                &#127919; Per qualsiasi necessit&agrave; contatta il nostro <a href="mailto:supporto@enoriserva.it">servizio clienti</a>.
             </div>
             <div id="redirect-message" class="redirect-message">
                 &#8634; Sarai automaticamente reindirizzato alla home page tra <span id="countdown">7</span> secondi.

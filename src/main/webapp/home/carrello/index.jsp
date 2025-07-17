@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../../css/carosello.css">
     <link rel="stylesheet" href="../../css/carrello.css">
     <link rel="stylesheet" href="../../css/navbar.css">
-    <title>Il tuo Carrello - SleepingSmarttress</title>
+    <title>Il tuo Carrello </title>
 </head>
 <body>
 
