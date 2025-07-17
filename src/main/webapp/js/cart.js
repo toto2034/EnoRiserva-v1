@@ -437,8 +437,8 @@ function renderServerCart(serverCart, cartContentElement) {
     const totale = serverCart.reduce((sum, item) => sum + (item.prezzo * item.quantita), 0);
     const numArticoli = serverCart.reduce((sum, item) => sum + item.quantita, 0);
     
-    // Calcola spedizione: gratuita sopra 700€, altrimenti 15.90€
-    const spedizione = totale >= 700 ? 0 : 15.90;
+    // Calcola spedizione: gratuita sopra 99, altrimenti 4.90€
+    const spedizione = totale >= 99 ? 0 : 4.90;
     const totaleConSpedizione = totale + spedizione;
     
     const articoliHTML = serverCart.map(item => `
@@ -477,8 +477,8 @@ function renderServerCart(serverCart, cartContentElement) {
                 <span>Totale</span>
                 <span>&euro;${totaleConSpedizione.toFixed(2)}</span>
             </div>
-            ${totale < 700 ? `<div class="shipping-info" style="margin: 10px 0; padding: 8px; background: #fff3cd; border-radius: 5px; font-size: 0.9em; color: #856404;">
-                <i class="fas fa-info-circle"></i> Aggiungi altri &euro;${(700 - totale).toFixed(2)} per la spedizione gratuita!
+            ${totale < 99 ? `<div class="shipping-info" style="margin: 10px 0; padding: 8px; background: #fff3cd; border-radius: 5px; font-size: 0.9em; color: #856404;">
+                <i class="fas fa-info-circle"></i> Aggiungi altri &euro;${(99 - totale).toFixed(2)} per la spedizione gratuita!
             </div>` : ''}
             <div class="auth-message success">
                 <i class="fas fa-check-circle"></i> Sei autenticato. Il carrello &egrave; sincronizzato con il database.
@@ -509,7 +509,7 @@ function renderLocalCart(cartContentElement) {
     const numArticoli = window.carrello.reduce((sum, item) => sum + item.quantita, 0);
     
     // Calcola spedizione: gratuita sopra 700€, altrimenti 15.90€
-    const spedizione = totale >= 700 ? 0 : 15.90;
+    const spedizione = totale >= 99 ? 0 : 4.90;
     const totaleConSpedizione = totale + spedizione;
 
     const articoliHTML = window.carrello.map(item => `
@@ -549,8 +549,8 @@ function renderLocalCart(cartContentElement) {
                 <span>Totale</span>
                 <span>&euro;${totaleConSpedizione.toFixed(2)}</span>
             </div>
-            ${totale < 700 ? `<div class="shipping-info" style="margin: 10px 0; padding: 8px; background: #fff3cd; border-radius: 5px; font-size: 0.9em; color: #856404;">
-                <i class="fas fa-info-circle"></i> Aggiungi altri &euro;${(700 - totale).toFixed(2)} per la spedizione gratuita!
+            ${totale < 99 ? `<div class="shipping-info" style="margin: 10px 0; padding: 8px; background: #fff3cd; border-radius: 5px; font-size: 0.9em; color: #856404;">
+                <i class="fas fa-info-circle"></i> Aggiungi altri &euro;${(99 - totale).toFixed(2)} per la spedizione gratuita!
             </div>` : ''}
             <div class="auth-message warning">
                 <i class="fas fa-exclamation-triangle"></i> Devi effettuare il login per procedere con l'acquisto.
