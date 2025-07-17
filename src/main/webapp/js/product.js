@@ -43,7 +43,7 @@ function loadArticle(id) {
             
             // Forza il campo img se non presente
             if (!articolo.img) {
-                articolo.img = '/EnoRiserva-v1/images/letto1.png';
+                articolo.img = '/EnoRiserva-v1/images/vino1.png';
             }
             
             currentArticle = articolo; // Salva l'articolo globalmente
@@ -121,14 +121,14 @@ function createImagesSection(articolo) {
     
     const mainImage = document.createElement('div');
     mainImage.className = 'main-image';
-    mainImage.innerHTML = `<img src="${imageUrl}" alt="${articolo.nome}" onerror="this.src='/EnoRiserva-v1/images/letto1.png';">`;
+    mainImage.innerHTML = `<img src="${imageUrl}" alt="${articolo.nome}" onerror="this.src='/EnoRiserva-v1/images/vino1.png';">`;
     
     const gallery = document.createElement('div');
     gallery.className = 'image-gallery';
     gallery.innerHTML = `
-        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/letto1.png';">
-        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/letto1.png';">
-        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/letto1.png';">
+        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/vino1.png';">
+        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/vino1.png';">
+        <img src="${imageUrl}" onclick="changeMainImage(this.src)" onerror="this.src='/EnoRiserva-v1/images/vino1.png';">
     `;
     
     section.appendChild(mainImage);
@@ -343,7 +343,7 @@ function addCurrentProductToCart() {
         descrizione: currentArticle.descrizione,
         prezzo: currentArticle.prezzo,
         quantita: quantity,
-        immagine: currentArticle.img || "/EnoRiserva-v1/images/letto1.png" // Usa immagine dal DB
+        immagine: currentArticle.img || "/EnoRiserva-v1/images/vino1.png" // Usa immagine dal DB
     };
     
     console.log('Aggiungendo prodotto al carrello:', productToAdd);
@@ -380,7 +380,7 @@ function addCurrentProductToWishlist() {
         nome: currentArticle.nome,
         descrizione: currentArticle.descrizione || 'Descrizione non disponibile',
         prezzo: currentArticle.prezzo,
-        immagine: currentArticle.img || '../images/letto1.png'
+        immagine: currentArticle.img || '../images/vino1.png'
     };
     
     console.log('wishlistItem da aggiungere:', wishlistItem);

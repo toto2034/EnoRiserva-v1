@@ -61,7 +61,7 @@ function generateInvoiceHTML(orderData, userData) {
     return `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #fff; padding: 20px;">
             <div style="text-align: center; border-bottom: 2px solid #2e3a59; padding-bottom: 20px; margin-bottom: 30px;">
-                <h1 style="color: #2e3a59; margin: 0;">SleepingSmarttress</h1>
+                <h1 style="color: #2e3a59; margin: 0;">Enoriserva</h1>
                 <p style="color: #666; margin: 5px 0;">Fattura</p>
             </div>
             
@@ -100,7 +100,7 @@ function generateInvoiceHTML(orderData, userData) {
             <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
                 <h3 style="color: #2e3a59; margin: 0 0 10px 0;">Grazie per il tuo acquisto!</h3>
                 <p style="margin: 5px 0;">Il tuo ordine &egrave; stato confermato e verr&agrave; spedito entro 2-4 giorni lavorativi.</p>
-                <p style="margin: 5px 0;">Per qualsiasi domanda, contattaci a: supporto@sleepingsmarttress.it</p>
+                <p style="margin: 5px 0;">Per qualsiasi domanda, contattaci a: supporto@enoriserva.it</p>
             </div>
         </div>
     `;

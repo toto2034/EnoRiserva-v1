@@ -50,7 +50,7 @@
                     <p class="switch-text">Hai gi&agrave; un account?
                         <button type="button" class="switch-link" id="show-login">Accedi</button>
                     </p>
-                    <p><a href="../" class="back-home"><i class="fa fa-arrow-left"></i> Torna alla home</a></p>
+                    <p><a href="EnoRiserva-v1/home" class="back-home"><i class="fa fa-arrow-left"></i> Torna alla home</a></p>
                 </div>
             </div>
         </div>

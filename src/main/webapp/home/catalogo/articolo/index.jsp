@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../../../css/home_style.css">
     <link rel="stylesheet" href="../../../css/product_style.css">
     <link rel="stylesheet" href="../../../css/carosello.css">
-    <link rel="stylesheet" href="../../../css/carrello.css">
+    <link rel="svinotylesheet" href="../../../css/carrello.css">
     <link rel="stylesheet" href="../../../css/navbar.css">
     <link rel="stylesheet" href="../../../css/wishlist.css">
 </head>

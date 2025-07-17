@@ -33,7 +33,7 @@ if (typeof window !== 'undefined') {
                 nome: product.nome || "Prodotto senza nome",
                 descrizione: product.descrizione || "Descrizione non disponibile",
                 prezzo: product.prezzo || 0,
-                immagine: product.immagine || product.img || '../images/letto1.png',
+                immagine: product.immagine || product.img || '../images/vino1.png',
                 dataAggiunta: new Date().toISOString()
             };
             console.log('DEBUG - Aggiunto prodotto alla wishlist:', nuovoProdotto);
@@ -138,7 +138,7 @@ if (typeof window !== 'undefined') {
                                 nome: btn.closest('.product-card').querySelector('.product-title')?.textContent || 'Prodotto',
                                 descrizione: btn.closest('.product-card').querySelector('.product-description')?.textContent || 'Descrizione non disponibile',
                                 prezzo: parseFloat(btn.closest('.product-card').querySelector('.product-price')?.textContent.replace('€ ', '') || 0),
-                                immagine: btn.closest('.product-card').querySelector('.product-image-large')?.src || '../images/letto1.png'
+                                immagine: btn.closest('.product-card').querySelector('.product-image-large')?.src || '../images/vino1.png'
                             };
                             if (typeof window.addToWishlist === 'function') {
                                 const success = window.addToWishlist(wishlistItem);
@@ -216,7 +216,7 @@ if (typeof window !== 'undefined') {
                     </button>
                 </div>
                 <div class="wishlist-card-image">
-                    <img src="${item.immagine}" alt="${item.nome}" onerror="this.src='../images/letto1.png'">
+                    <img src="${item.immagine}" alt="${item.nome}" onerror="this.src='../images/vino1.png'">
                 </div>
                 <div class="wishlist-card-info">
                     <p>${item.descrizione}</p>

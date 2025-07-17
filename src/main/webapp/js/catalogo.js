@@ -22,7 +22,7 @@ function createProductCard(articolo) {
 
     // Immagine grande in alto
     const img = document.createElement('img');
-    img.src = articolo.img || '../../images/letto1.png';
+    img.src = articolo.img || '../../images/vino1.png';
     img.alt = articolo.nome;
     img.onerror = function () {
         this.src = '../../images/product-placeholder.jpg';

@@ -1,4 +1,3 @@
-// Sistema Recensioni Unificato - SleepingSmarttress
 // Recensioni fittizie coerenti per tutti i prodotti
 
 class ReviewsManager {

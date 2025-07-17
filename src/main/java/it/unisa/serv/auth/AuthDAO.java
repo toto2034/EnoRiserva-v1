@@ -96,7 +96,7 @@ public class AuthDAO extends HttpServlet {
                 insertStmt.executeUpdate();
                 
                 String jsonResponse = String.format(
-                    "{\"success\":true,\"message\":\"Benvenuto %s, Grazie per esserti registrato! Inizia ad acquistare su SleepingSmarttress\",\"redirect\":\"%s/home/\"}",
+                    "{\"success\":true,\"message\":\"Benvenuto %s, Grazie per esserti registrato! Inizia ad acquistare su EnoRiserva\",\"redirect\":\"%s/home/\"}",
                     nome,
                     request.getContextPath()
                 );
@@ -193,7 +193,7 @@ public class AuthDAO extends HttpServlet {
                 // Invia JSON di successo invece di redirect per permettere al frontend di mostrare il messaggio
                 response.setContentType("application/json");
                 String jsonResponse = String.format(
-                    "{\"success\":true,\"message\":\"Login effettuato correttamente\",\"redirect\":\"/SleepingSmarttress/home/\"}",
+                    "{\"success\":true,\"message\":\"Login effettuato correttamente\",\"redirect\":\"/EnoRiserva-v1/home/\"}",
                     username, nome, cognome, email, tipo, token
                 );
                 out.print(jsonResponse);
