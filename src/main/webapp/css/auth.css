@@ -69,7 +69,7 @@ body {
 }
 
 .auth-form input:focus {
-    border: 1.5px solid #6c63ff;
+    border: 1.5px solid #D4AF37;
     outline: none;
 }
 
@@ -88,20 +88,20 @@ body {
 }
 
 .auth-form button:hover {
-    background: linear-gradient(90deg, #48c6ef 0%, #6c63ff 100%);
+    background: linear-gradient(90deg, #990F02, #D4AF37);
     transform: translateY(-2px) scale(1.03);
 }
 
 .switch-text {
     margin-top: 1.2rem;
-    color: #6c63ff;
+    color: #D4AF37;
     font-size: 1.05rem;
     text-align: center;
     word-break: break-word;
 }
 
 .switch-link {
-    color: #48c6ef;
+    color: #D4AF37;
     font-weight: 700;
     cursor: pointer;
     text-decoration: underline;
@@ -111,13 +111,13 @@ body {
 }
 
 .switch-link:hover {
-    color: #6c63ff;
+    color: #D4AF37;
 }
 
 .back-home {
     display: inline-flex;
     align-items: center;
-    color: #6c63ff;
+    color: #D4AF37;
     font-weight: 600;
     text-decoration: none;
     margin-top: 1.2rem;
@@ -127,7 +127,7 @@ body {
 }
 
 .back-home:hover {
-    color: #48c6ef;
+    color: #D4AF37;
 }
 
 .slider-card {
@@ -243,7 +243,7 @@ body {
 }
 
 .welcome-modal h2 {
-    color: #6c63ff;
+    color: #D4AF37;
     font-family: 'Playfair Display', serif;
     margin-bottom: 1rem;
     font-size: 1.5rem;

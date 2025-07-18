@@ -90,7 +90,7 @@ body {
 
 #shipping-cost {
     font-weight: 500;
-    color: #2980b9;
+    color: #D4AF37;
 }
 
 .dropdown-toggle {
@@ -109,7 +109,7 @@ body {
 }
 
 .dropdown-toggle:hover {
-    border-color: #3498db;
+    border-color: #D4AF37;
     background: #f8f9fc;
 }
 
@@ -137,7 +137,7 @@ body {
 
 .dropdown-option:hover {
     background: #f8f9fc;
-    border-color: #3498db;
+    border-color: #D4AF37;
 }
 
 .payment-options {
@@ -165,7 +165,7 @@ body {
 
 .payment-option i {
     font-size: 1.2em;
-    color: #3498db;
+    color: #D4AF37;
 }
 
 .address-input {
@@ -179,7 +179,7 @@ body {
 }
 
 .address-input:focus {
-    border-color: #3498db;
+    border-color: #D4AF37;
     outline: none;
     box-shadow: 0 0 0 2px rgba(52,152,219,0.1);
 }
@@ -197,13 +197,13 @@ body {
 }
 
 .address-select:focus {
-    border-color: #3498db;
+    border-color: #D4AF37;
     outline: none;
     box-shadow: 0 0 0 2px rgba(52,152,219,0.1);
 }
 
 .submit-address-btn {
-    background: #3498db;
+    background: #D4AF37;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -216,14 +216,14 @@ body {
 }
 
 .submit-address-btn:hover {
-    background: #2980b9;
+    background: #D4AF37;
     transform: translateY(-2px);
 }
 
 .checkout-btn {
     display: block;
     width: 100%;
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: linear-gradient(135deg, #990F02, #D4AF37);
     color: white;
     text-decoration: none;
     padding: 18px 0;
@@ -239,7 +239,7 @@ body {
 }
 
 .checkout-btn:hover {
-    background: linear-gradient(135deg, #2980b9, #3498db);
+    background: linear-gradient(135deg, #990F02, #D4AF37);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
 }
@@ -333,7 +333,7 @@ body {
     position: absolute;
     top: 30px;
     left: 30px;
-    color: #3498db;
+    color: #D4AF37;
     font-size: 1.3em;
     text-decoration: none;
     font-weight: 600;
@@ -349,7 +349,7 @@ body {
 }
 
 .arrow-back:hover {
-    background: #3498db;
+    background: #D4AF37;
     color: #fff;
 }
 

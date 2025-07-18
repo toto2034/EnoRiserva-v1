@@ -228,7 +228,7 @@
     display: inline-block;
     margin-top: 20px;
     padding: 12px 30px;
-    background-color: #007bff;
+    background-color: #D4AF37;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -236,7 +236,7 @@
 }
 
 .continue-shopping:hover {
-    background-color: #0056b3;
+    background-color: #D4AF37;
     text-decoration: none;
     color: white;
 }
@@ -246,7 +246,7 @@
   position: fixed;
   top: 30px;
   right: 30px;
-  background: #6e8efb;
+  background: #D4AF37;
   color: #fff;
   padding: 14px 28px;
   border-radius: 8px;

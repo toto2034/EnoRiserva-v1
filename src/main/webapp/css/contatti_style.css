@@ -8,7 +8,7 @@ body {
 }
 
 a {
-    color: #6e8efb;
+    color: #D4AF37;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
@@ -58,7 +58,7 @@ a:hover {
 
 .member-image {
     font-size: 5rem;
-    color: #4a90e2;
+    color: #D4AF37;
     margin-bottom: 1rem;
 }
 
@@ -81,13 +81,13 @@ a:hover {
 }
 
 .social-links a {
-    color: #4a90e2;
+    color: #D4AF37;
     font-size: 1.5rem;
     transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-    color: #2d5f9e;
+    color: #D4AF37;
 }
 
 .contact-form {
@@ -134,7 +134,7 @@ textarea {
 button[type="submit"] {
     width: 100%;
     padding: 1rem;
-    background: #4a90e2;
+    background: #D4AF37;
     color: white;
     border: none;
     border-radius: 5px;
@@ -145,7 +145,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background: #2d5f9e;
+    background: #D4AF37;
 }
 
 @media (max-width: 768px) {
@@ -191,7 +191,7 @@ button[type="submit"]:hover {
 .logo-text {
     font-size: 1.5em;
     font-weight: 700;
-    color: #6e8efb;
+    color: #D4AF37;
     letter-spacing: 1px;
 }
 
@@ -232,7 +232,7 @@ button[type="submit"]:hover {
 .hamburger span {
     height: 3px;
     width: 26px;
-    background: #6e8efb;
+    background: #D4AF37;
     margin: 4px 0;
     border-radius: 2px;
     display: block;

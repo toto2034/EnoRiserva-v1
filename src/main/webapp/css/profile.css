@@ -105,7 +105,7 @@
     font-size: 1.08em;
 }
 .profile-info i {
-    color: #7b8bb7;
+    color: #D4AF37;
     font-size: 1.1em;
 }
 .profile-info span {
@@ -127,7 +127,7 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(110,142,251,0.08);
     padding: 18px 22px;
-    border-left: 4px solid #6e8efb;
+    border-left: 4px solid #D4AF37;
     transition: box-shadow 0.2s;
 }
 .ordine-card:hover {
@@ -178,7 +178,7 @@
 .address-card button {
     margin-right: 8px;
     margin-top: 8px;
-    background: #6e8efb;
+    background: #D4AF37;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -198,7 +198,7 @@
 }
 .address-add-btn {
     margin-top: 16px;
-    background: #6e8efb;
+    background: #D4AF37;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -208,7 +208,7 @@
     transition: background 0.2s;
 }
 .address-add-btn:hover {
-    background: #a777e3;
+    background: #D4AF37;
 }
 .address-form {
     display: flex;
@@ -230,7 +230,7 @@
     font-size: 1em;
 }
 .address-form button[type="submit"] {
-    background: #6e8efb;
+    background: #D4AF37;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -241,7 +241,7 @@
     transition: background 0.2s;
 }
 .address-form button[type="submit"]:hover {
-    background: #a777e3;
+    background: #D4AF37;
 }
 .address-form .address-cancel-btn {
     background: #eee;
@@ -635,7 +635,7 @@
 #ordini-admin-filtri select:focus,
 #ordini-admin-filtri input[type="date"]:focus {
     outline: none;
-    border-color: #6e8efb;
+    border-color: #D4AF37;
     box-shadow: 0 0 0 3px rgba(110, 142, 251, 0.1);
 }
 
@@ -657,7 +657,7 @@
 }
 
 #applica-filtri:hover {
-    background: #5a7ce8;
+    background: #D4AF37;
     transform: translateY(-1px);
 }
 

@@ -20,7 +20,7 @@
 .wishlist-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    border-color: #6e8efb;
+    border-color: #D4AF37;
 }
 
 .wishlist-card:active {
@@ -85,12 +85,12 @@
 
 .wishlist-card-info span {
     font-weight: bold;
-    color: #6e8efb;
+    color: #D4AF37;
     font-size: 1.1em;
 }
 
 .add-to-cart-from-wishlist {
-    background: #6e8efb;
+    background: #D4AF37;
     color: white;
     border: none;
     padding: 8px 15px;
