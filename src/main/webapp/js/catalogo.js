@@ -25,7 +25,7 @@ function createProductCard(articolo) {
     img.src = articolo.img || '../../images/vino1.png';
     img.alt = articolo.nome;
     img.onerror = function () {
-        this.src = '../../images/product-placeholder.jpg';
+        this.src = '../../images/bottigliaVinno.png';
     };
     img.className = 'product-image-large';
     card.appendChild(img);

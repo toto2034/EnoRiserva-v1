@@ -444,7 +444,7 @@ function renderServerCart(serverCart, cartContentElement) {
     const articoliHTML = serverCart.map(item => `
         <div class="cart-item" data-id="${item.id}">
             <div class="cart-item-image">
-                <img src="${item.immagine}" alt="${item.nome}" onerror="this.src='../../images/product-placeholder.jpg'">
+                <img src="${item.immagine}" alt="${item.nome}" onerror="this.src='../../images/bottigliaVino.png'">
             </div>
             <div class="cart-item-details">
                 <div class="cart-item-name">${item.nome}</div>
@@ -515,7 +515,7 @@ function renderLocalCart(cartContentElement) {
     const articoliHTML = window.carrello.map(item => `
         <div class="cart-item" data-id="${item.id}">
             <div class="cart-item-image">
-                <img src="${item.immagine}" alt="${item.nome}" onerror="this.src='../../images/product-placeholder.jpg'">
+                <img src="${item.immagine}" alt="${item.nome}" onerror="this.src='../../images/bottigliaVino.png'">
             </div>
             <div class="cart-item-details">
                 <div class="cart-item-name">${item.nome}</div>

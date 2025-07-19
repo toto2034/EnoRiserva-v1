@@ -90,10 +90,12 @@ public class CarrelloDAO {
     }
 
     public List<CarrelloItem> getCarrelloCompletoByUsername(String username) throws SQLException {
-        String sql = "SELECT c.*, a.nome, a.descrizione, a.prezzo, a.quantitaDisponibile, a.img " +
-                    "FROM Carrello c " +
-                    "JOIN Articolo a ON c.id_articolo = a.id " +
-                    "WHERE c.username = ?";
+        String sql = "SELECT c.*, " +
+                "a.id AS art_id, a.nome, a.descrizione, a.tipologia, a.regione, a.annata, " +
+                "a.prezzo, a.quantitaDisponibile, a.img " +
+                "FROM Carrello c " +
+                "JOIN Articolo a ON c.id_articolo = a.id " +
+                "WHERE c.username = ?";
         List<CarrelloItem> carrelloList = new ArrayList<>();
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -132,14 +134,14 @@ public class CarrelloDAO {
         
         // Estrai i dati dell'articolo
         Articolo articolo = new Articolo(
-                rs.getInt("id"),
+                rs.getInt("id_articolo"),
                 rs.getString("nome"),
                 rs.getString("descrizione"),
                 rs.getString("tipologia"),
                 rs.getString("regione"),
                 rs.getInt("annata"),
                 rs.getDouble("prezzo"),
-                rs.getInt("quantita"),
+                rs.getInt("quantitaDisponibile"),
                 rs.getString("img")
         );
         
