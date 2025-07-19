@@ -25,7 +25,7 @@ if (username) {
                         <p><i class="fas fa-user-tag"></i> <strong>Tipo:</strong> <span>${data.tipo}</span></p>
                     </div>
                 `;
-                
+
                 // Gestione tab admin
                 const adminTab = document.getElementById('admin-tab');
                 if (data.tipo === 'Amministratore') {
@@ -200,15 +200,15 @@ function mostraFormIndirizzo(section, indirizzo = null) {
             body: data,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
-        .then(res => res.json())
-        .then(r => {
-            if (r.success) {
-                caricaIndirizzi();
-            } else {
-                alert(r.message || 'Errore');
-            }
-        })
-        .catch(() => alert('Errore di rete'));
+            .then(res => res.json())
+            .then(r => {
+                if (r.success) {
+                    caricaIndirizzi();
+                } else {
+                    alert(r.message || 'Errore');
+                }
+            })
+            .catch(() => alert('Errore di rete'));
     };
     form.querySelector('.address-cancel-btn').onclick = () => form.remove();
     section.appendChild(form);
@@ -333,29 +333,49 @@ function mostraFormProdotto(section, prodotto = null) {
     // Form prodotto
     const form = document.createElement('form');
     form.className = 'prodotto-form';
+    // --- INIZIO SEZIONE MODIFICATA ---
     form.innerHTML = `
-        <h3>${prodotto ? '<i class="fas fa-edit"></i> Modifica Prodotto' : '<i class="fas fa-plus"></i> Nuovo Prodotto'}</h3>
-        <div class="prodotto-form-row">
-            <div class="prodotto-form-col">
-                <label>Nome</label>
-                <input name="nome" placeholder="Nome" required value="${prodotto ? prodotto.nome : ''}">
-                <label>Descrizione</label>
-                <input name="descrizione" placeholder="Descrizione" required value="${prodotto ? prodotto.descrizione : ''}">
-                <label>URL Immagine</label>
-                <input name="img" placeholder="URL Immagine" value="${prodotto ? prodotto.img : ''}">
-            </div>
-            <div class="prodotto-form-col">
-                <label>Prezzo</label>
-                <input name="prezzo" type="number" step="0.01" min="0" placeholder="Prezzo" required value="${prodotto ? prodotto.prezzo : ''}">
-                <label>Quantità</label>
-                <input name="quantitaDisponibile" type="number" min="0" placeholder="Quantità" required value="${prodotto ? prodotto.quantitaDisponibile : ''}">
-            </div>
+    <h3>${prodotto ? '<i class="fas fa-edit"></i> Modifica Prodotto' : '<i class="fas fa-plus"></i> Nuovo Prodotto'}</h3>
+    <div class="prodotto-form-row">
+        <div class="prodotto-form-col">
+            <label>Nome</label>
+            <input name="nome" placeholder="Nome del vino" required value="${prodotto ? prodotto.nome : ''}">
+            
+            <label>Descrizione</label>
+            <input name="descrizione" placeholder="Descrizione" required value="${prodotto ? prodotto.descrizione : ''}">
+            
+            <label>Tipologia</label>
+            <select name="tipologia" required>
+                <option value="" disabled ${!prodotto ? 'selected' : ''}>-- Seleziona una tipologia --</option>
+                <option value="VINO_ROSSO" ${prodotto && prodotto.tipologia === 'VINO_ROSSO' ? 'selected' : ''}>Vino Rosso</option>
+                <option value="VINO_BIANCO" ${prodotto && prodotto.tipologia === 'VINO_BIANCO' ? 'selected' : ''}>Vino Bianco</option>
+                <option value="SPUMANTE" ${prodotto && prodotto.tipologia === 'SPUMANTE' ? 'selected' : ''}>Spumante</option>
+            </select>
+
+            <label>Regione</label>
+            <input name="regione" placeholder="es. Toscana" required value="${prodotto ? prodotto.regione : ''}">
+            
         </div>
-        <div class="prodotto-form-actions">
-            <button type="submit">${prodotto ? '<i class="fas fa-save"></i> Salva Modifiche' : '<i class="fas fa-plus"></i> Aggiungi'}</button>
-            <button type="button" class="prodotto-cancel-btn"><i class="fas fa-times"></i> Annulla</button>
+        <div class="prodotto-form-col">
+            <label>URL Immagine</label>
+            <input name="img" placeholder="URL Immagine" value="${prodotto ? prodotto.img : ''}">
+
+            <label>Prezzo</label>
+            <input name="prezzo" type="number" step="0.01" min="0" placeholder="Prezzo" required value="${prodotto ? prodotto.prezzo : ''}">
+            
+            <label>Quantità</label>
+            <input name="quantitaDisponibile" type="number" min="0" placeholder="Quantità" required value="${prodotto ? prodotto.quantitaDisponibile : ''}">
+            
+            <label>Annata</label>
+            <input name="annata" type="number" min="1900" placeholder="Anno" required value="${prodotto ? prodotto.annata : ''}">
         </div>
-    `;
+    </div>
+    <div class="prodotto-form-actions">
+        <button type="submit">${prodotto ? '<i class="fas fa-save"></i> Salva Modifiche' : '<i class="fas fa-plus"></i> Aggiungi'}</button>
+        <button type="button" class="prodotto-cancel-btn"><i class="fas fa-times"></i> Annulla</button>
+    </div>
+`;
+    // --- FINE SEZIONE MODIFICATA ---
     form.onsubmit = e => {
         e.preventDefault();
         const formData = new FormData(form);
@@ -368,17 +388,17 @@ function mostraFormProdotto(section, prodotto = null) {
             body: data,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
-        .then(res => res.json())
-        .then(r => {
-            if (r.success) {
-                mostraListaProdotti();
-                chiudiModaleProdotto();
-                mostraFeedbackAdmin('Operazione completata con successo!', true);
-            } else {
-                mostraFeedbackAdmin(r.message || 'Errore', false);
-            }
-        })
-        .catch(() => mostraFeedbackAdmin('Errore di rete', false));
+            .then(res => res.json())
+            .then(r => {
+                if (r.success) {
+                    mostraListaProdotti();
+                    chiudiModaleProdotto();
+                    mostraFeedbackAdmin('Operazione completata con successo!', true);
+                } else {
+                    mostraFeedbackAdmin(r.message || 'Errore', false);
+                }
+            })
+            .catch(() => mostraFeedbackAdmin('Errore di rete', false));
     };
     form.querySelector('.prodotto-cancel-btn').onclick = chiudiModaleProdotto;
     overlay.appendChild(form);
@@ -621,7 +641,7 @@ function mostraAdminProdottiUI() {
     // Hook switch a ordini
     document.getElementById('admin-ordini-btn').onclick = mostraAdminOrdiniUI;
     document.getElementById('admin-prodotti-btn').onclick = mostraAdminProdottiUI;
-    
+
     // Hook bottoni prodotti
     const btnVisualizza = document.getElementById('admin-visualizza-btn');
     const btnAggiungi = document.getElementById('admin-aggiungi-btn');

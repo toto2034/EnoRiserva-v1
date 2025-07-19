@@ -56,7 +56,7 @@ public class ArticoloDao {
             ps.setDouble(6, a.getPrezzo());
             ps.setInt(7, a.getQuantitaDisponibile());
             ps.setString(8, a.getImg());
-            ps.setInt(6, a.getId());
+            ps.setInt(9, a.getId());
             return ps.executeUpdate() > 0;
         }
     }

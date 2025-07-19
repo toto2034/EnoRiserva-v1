@@ -720,31 +720,73 @@
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     #ordini-admin-filtri label {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
     }
-    
+
     #ordini-admin-filtri select,
     #ordini-admin-filtri input[type="date"] {
         min-width: auto;
         flex: 1;
     }
-    
+
     .admin-ordini-table {
         font-size: 0.8em;
     }
-    
+
     .admin-ordini-table th,
     .admin-ordini-table td {
         padding: 8px 10px;
     }
-    
+
     /* Nascondi colonne meno importanti su mobile */
     .admin-ordini-table th:nth-child(4),
     .admin-ordini-table td:nth-child(4) {
         display: none;
     }
+}
+
+
+
+.prodotto-form {
+    max-width: 800px;
+}
+
+
+.prodotto-form {
+    display: block;
+}
+
+
+.prodotto-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+
+.prodotto-form-col {
+    flex: 1;
+    min-width: 250px;
+    gap: 0;
+}
+
+
+.prodotto-form select {
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1.5px solid #e3e8fd;
+    font-size: 1em;
+    margin-bottom: 8px;
+    background: #fff;
+    transition: border 0.2s;
+    font-family: inherit;
+}
+
+.prodotto-form select:focus {
+    border: 1.5px solid #ff6b35;
+    outline: none;
 }

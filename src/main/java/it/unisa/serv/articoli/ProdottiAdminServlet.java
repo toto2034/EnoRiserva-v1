@@ -11,29 +11,58 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import it.unisa.models.Articolo;
 import it.unisa.models.ArticoloDao;
 import it.unisa.serv.connessione.ConnectionManager;
 
 @WebServlet("/admin/prodotti")
 public class ProdottiAdminServlet extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8"); // Imposta la codifica per sicurezza
+
         try (Connection conn = ConnectionManager.getConnection()) {
             ArticoloDao dao = new ArticoloDao();
             List<Articolo> prodotti = dao.getAll(conn);
             PrintWriter out = response.getWriter();
-            out.print("[");
+
+            out.print("["); // Inizio dell'array JSON
+
             for (int i = 0; i < prodotti.size(); i++) {
                 Articolo a = prodotti.get(i);
-                out.print("{\"id\":" + a.getId() + ",\"nome\":\"" + escape(a.getNome()) + "\",\"descrizione\":\"" + escape(a.getDescrizione()) + "\",\"prezzo\":" + a.getPrezzo() + ",\"quantitaDisponibile\":" + a.getQuantitaDisponibile() + ",\"img\":\"" + escape(a.getImg()) + "\"}");
-                if (i < prodotti.size() - 1) out.print(",");
+
+                // Costruzione manuale dell'oggetto JSON per ogni articolo
+                out.print("{");
+                out.print("\"id\":" + a.getId() + ",");
+                out.print("\"nome\":\"" + escape(a.getNome()) + "\",");
+                out.print("\"descrizione\":\"" + escape(a.getDescrizione()) + "\",");
+                // CAMPI AGGIUNTI MANUALMENTE
+                out.print("\"tipologia\":\"" + escape(a.getTipologia()) + "\",");
+                out.print("\"regione\":\"" + escape(a.getRegione()) + "\",");
+                out.print("\"annata\":" + a.getAnnata() + ",");
+                // FINE CAMPI AGGIUNTI
+                out.print("\"prezzo\":" + a.getPrezzo() + ",");
+                out.print("\"quantitaDisponibile\":" + a.getQuantitaDisponibile() + ",");
+                out.print("\"img\":\"" + escape(a.getImg()) + "\"");
+                out.print("}");
+
+                // Aggiunge una virgola se non è l'ultimo elemento dell'array
+                if (i < prodotti.size() - 1) {
+                    out.print(",");
+                }
             }
-            out.print("]");
+
+            out.print("]"); // Fine dell'array JSON
+            out.flush();
+
         } catch (Exception e) {
+            e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().write("[]");
+            response.getWriter().write("[]"); // Invia un array vuoto in caso di errore
         }
     }
 
@@ -50,13 +79,18 @@ public class ProdottiAdminServlet extends HttpServlet {
         String prezzoStr = request.getParameter("prezzo");
         String quantitaStr = request.getParameter("quantitaDisponibile");
         String img = request.getParameter("img");
+
         System.out.println("--- DEBUG INSERIMENTO/MODIFICA PRODOTTO ---");
         System.out.println("id: " + idStr);
         System.out.println("nome: " + nome);
+        System.out.println("tipologia: " + tipologia);
+        System.out.println("regione: " + regione);
+        System.out.println("annata: " + annata);
         System.out.println("descrizione: " + descrizione);
         System.out.println("prezzo: " + prezzoStr);
         System.out.println("quantitaDisponibile: " + quantitaStr);
         System.out.println("img: " + img);
+
         try (Connection conn = ConnectionManager.getConnection()) {
             ArticoloDao dao = new ArticoloDao();
             boolean ok;
@@ -69,6 +103,7 @@ public class ProdottiAdminServlet extends HttpServlet {
             }
             response.getWriter().write("{\"success\":" + ok + "}");
         } catch (Exception e) {
+            e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"success\":false,\"message\":\"Errore salvataggio/modifica\"}");
         }
@@ -88,12 +123,16 @@ public class ProdottiAdminServlet extends HttpServlet {
             boolean ok = dao.delete(Integer.parseInt(idStr), conn);
             response.getWriter().write("{\"success\":" + ok + "}");
         } catch (Exception e) {
+            e.printStackTrace();
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"success\":false,\"message\":\"Errore eliminazione\"}");
         }
     }
 
     private String escape(String s) {
-        return s == null ? "" : s.replace("\"", "\\\"");
+        if (s == null) {
+            return "";
+        }
+        return s.replace("\\", "\\\\").replace("\"", "\\\"");
     }
-} 
+}
