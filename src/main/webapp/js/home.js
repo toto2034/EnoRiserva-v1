@@ -70,11 +70,11 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-    // Funzione per gestire immagini mancanti
-    function handleImageError(img) {
-        img.onerror = null; // Previene loop infiniti
-        img.src = '../images/product-placeholder.jpg';
-    }
+    // Funzione per gestire immagini mancanti (NON PIÙ NECESSARIA, la logica è dentro renderArticoli)
+    // function handleImageError(img) {
+    //     img.onerror = null; // Previene loop infiniti
+    //     img.src = '../images/product-placeholder.jpg';
+    // }
 
     function renderArticoli(articoli) {
         const productList = document.getElementById('product-list');
@@ -82,8 +82,12 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('product-list non trovato, saltando renderArticoli');
             return;
         }
-        
+
         productList.innerHTML = '';
+
+        // Definiamo il percorso dell'immagine di fallback UNA SOLA VOLTA
+        const fallbackImagePath = '/EnoRiserva-v1/images/vino1.jpg';
+
         articoli.forEach(articolo => {
             const card = document.createElement('div');
             card.className = 'product-card clickable-card';
@@ -98,13 +102,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             };
 
-            // Immagine grande in alto
+            // --- INIZIO BLOCCO IMMAGINE MODIFICATO ---
             const img = document.createElement('img');
-            img.src = articolo.img || '../images/vino1.png';
+
+            // Logica principale: usa l'URL dal DB o, se mancante, il fallback.
+            img.src = articolo.img || fallbackImagePath;
+
+            // Gestione errori: se l'URL dal DB è rotto, usa comunque il fallback.
+            img.onerror = function() {
+                this.onerror = null; // Previene loop infiniti
+                this.src = fallbackImagePath;
+            };
+
             img.alt = articolo.nome;
-            img.onerror = function() { this.src = '../images/product-placeholder.jpg'; };
             img.className = 'product-image-large';
             card.appendChild(img);
+            // --- FINE BLOCCO IMMAGINE MODIFICATO ---
 
             // Nome e prezzo su una riga
             const namePriceRow = document.createElement('div');
@@ -137,7 +150,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             card.appendChild(ratingDiv);
 
-            // Pulsanti wishlist e carrello in basso (come nel catalogo)
+            // Determiniamo il percorso corretto dell'immagine da passare alle altre funzioni
+            const immagineCorrettaPerFunzioni = articolo.img || fallbackImagePath;
+
+            // Pulsanti wishlist e carrello in basso
             const buttonsDiv = document.createElement('div');
             buttonsDiv.className = 'product-card-buttons-bottom';
             const wishlistBtn = document.createElement('button');
@@ -153,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     nome: articolo.nome,
                     descrizione: articolo.descrizione || 'Descrizione non disponibile',
                     prezzo: articolo.prezzo,
-                    immagine: articolo.img || '../images/vino1.png'
+                    immagine: immagineCorrettaPerFunzioni // CORRETTO
                 };
                 if (typeof window.addToWishlist === 'function') {
                     const success = window.addToWishlist(wishlistItem);
@@ -179,18 +195,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     descrizione: articolo.descrizione || 'Descrizione non disponibile',
                     prezzo: articolo.prezzo,
                     quantita: 1,
-                    immagine: articolo.img || '../images/vino1.png'
+                    immagine: immagineCorrettaPerFunzioni // CORRETTO
                 };
                 if (typeof window.addToCart === 'function') {
-                    try { 
-                        const success = window.addToCart(cartItem); 
+                    try {
+                        const success = window.addToCart(cartItem);
                         if (success) {
                             cartBtn.classList.add('active');
                             cartBtn.innerHTML = '<i class="fas fa-shopping-cart" style="color: #4CAF50;"></i>';
                             cartBtn.title = 'Prodotto già nel carrello';
                         }
-                    } catch(e) { 
-                        alert('Errore carrello: ' + e.message); 
+                    } catch(e) {
+                        alert('Errore carrello: ' + e.message);
                     }
                 } else {
                     alert('Funzione carrello non disponibile.');
@@ -251,13 +267,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- BARRA DI RICERCA LIVE AJAX ---
     const searchInput = document.querySelector('.search-input');
     const searchForm = document.querySelector('.search-form');
-    
+
     if (searchForm) {
         searchForm.addEventListener('submit', function (e) {
             e.preventDefault();
         });
     }
-    
+
     if (searchInput) {
         searchInput.addEventListener('input', function () {
             const query = searchInput.value.trim().toLowerCase();
@@ -302,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Mobile menu elements not found');
             }
         }
-        
+
         function closeMobileMenu() {
             console.log('Closing mobile menu...');
             if (mobileMenu && mobileMenuOverlay) {
@@ -314,22 +330,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Mobile menu elements not found');
             }
         }
-        
+
         if (openMobileMenuBtn && closeMobileMenuBtn && mobileMenu && mobileMenuOverlay) {
             // Remove existing event listeners to prevent duplicates
             openMobileMenuBtn.removeEventListener('click', openMobileMenu);
             closeMobileMenuBtn.removeEventListener('click', closeMobileMenu);
             mobileMenuOverlay.removeEventListener('click', closeMobileMenu);
-            
+
             openMobileMenuBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 openMobileMenu();
             });
-            openMobileMenuBtn.addEventListener('keydown', function(e) { 
+            openMobileMenuBtn.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    openMobileMenu(); 
+                    openMobileMenu();
                 }
             });
             closeMobileMenuBtn.addEventListener('click', function(e) {
