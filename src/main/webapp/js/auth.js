@@ -184,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     // Crea elemento per il messaggio
+                    console.log('Risposta login:', data);
                     const messageDiv = document.createElement('div');
                     messageDiv.className = 'login-message';
                     messageDiv.style.marginTop = '10px';
@@ -201,8 +202,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         // Imposta stato di autenticazione
                         sessionStorage.setItem('userAuthenticated', 'true');
+
+                        // Se server invia username lo uso, altrimenti uso quello preso dall'input
                         if (data.username) {
                             window.username = data.username;
+                            localStorage.setItem('username', data.username);
+                        } else {
+                            window.username = username;   // username preso dall'input form
+                            localStorage.setItem('username', username);
                         }
 
                         // Sincronizza carrello e redirect

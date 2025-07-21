@@ -51,11 +51,29 @@ function createProductCard(articolo) {
     namePriceRow.appendChild(price);
     card.appendChild(namePriceRow);
 
+    // Info prodotto: Tipologia, Regione, Annata
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'product-info';
+
+    const tipologiaSpan = document.createElement('p');
+    tipologiaSpan.textContent = `${articolo.tipologia || '-'}`;
+
+    const regioneSpan = document.createElement('p');
+    regioneSpan.textContent = `${articolo.regione || '-'}`;
+
+    const annataSpan = document.createElement('p');
+    annataSpan.textContent = `${articolo.annata || '-'}`;
+
+    infoDiv.appendChild(tipologiaSpan);
+    infoDiv.appendChild(regioneSpan);
+    infoDiv.appendChild(annataSpan);
+    card.appendChild(infoDiv);
+
     // Descrizione
     const desc = document.createElement('p');
     desc.className = 'product-description';
     desc.textContent = articolo.descrizione || 'Descrizione non disponibile';
-    card.appendChild(desc);
+    //card.appendChild(desc);
 
     // Stelle recensioni
     const ratingDiv = document.createElement('div');

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/home_style.css">
+<!--<link rel="stylesheet" href="${pageContext.request.contextPath}/css/home_style.css">-->
 
 <%@ page import="it.unisa.models.User" %>
 <%--
@@ -126,6 +126,7 @@
 
 <script src="../../../js/emailjs-config.js"></script>
 <script src="../../../js/checkout.js"></script>
+
 
 </body>
 </html>

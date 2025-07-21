@@ -91,7 +91,7 @@ public class CarrelloDAO {
     }
 
     public List<CarrelloItem> getCarrelloCompletoByUsername(String username) throws SQLException {
-        String sql = "SELECT c.*, a.nome, a.descrizione, a.prezzo, a.quantitaDisponibile, a.img " +
+        String sql = "SELECT c.*, a.*" +
                     "FROM Carrello c " +
                     "JOIN Articolo a ON c.id_articolo = a.id " +
                     "WHERE c.username = ?";
