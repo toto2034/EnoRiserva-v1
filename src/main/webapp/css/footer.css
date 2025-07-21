@@ -1,14 +1,29 @@
-/* === FOOTER STILE AMAZON CHAMPAGNE === */
+/* === FOOTER CON SFONDO E TESTO CHIARO (VERSIONE DEFINITIVA) === */
+
 .footer {
   width: 100%;
-  background-color: #f7e7ce; /* Champagne */
-  color: #2b2b2b;
   font-family: 'Montserrat', Arial, sans-serif;
   margin-top: 3rem;
   overflow: hidden;
+  position: relative;
+  color: #f0f0f0;
+
+  background-image: url('https://media.istockphoto.com/id/504580551/it/foto/vigneti-al-tramonto.jpg?s=612x612&w=0&k=20&c=tzBm3-Zts99c3h7-w3HKICspldJEX1061-4ElpcoS_8=');
+  background-size: cover;
+  background-position: center;
 }
 
-/* Contenitore flessibile */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(30, 20, 10, 0.75);
+  z-index: 0;
+}
+
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -26,30 +41,43 @@
   min-width: 180px;
 }
 
-.footer-logo {
-  width: 60px;
-  height: 60px;
+/* === MODIFICA CHIAVE: REGOLA CORRETTA PER IL LOGO === */
+/*
+  Ho corretto 'border' in 'border-radius' e ripristinato
+  le dimensioni e la spaziatura corrette.
+*/
+.footer .logo-img {
+  width: 65px;
+  height: 65px;
+  background-color: #FDF6E3;
+  border-radius: 12px; /* <-- Ecco la proprietà corretta per gli angoli! */
+  padding: 8px; /* Necessario per dare spazio al logo dentro lo sfondo */
   margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
+/* === FINE MODIFICA === */
+
 
 /* Branding */
 .footer-brand h3 {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
-  color: #7b5e45;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
 .footer-desc {
   font-size: 1rem;
-  color: #4c4c4c;
   margin-top: 0.5rem;
+  color: #e0e0e0;
 }
 
 /* Titoli sezioni */
 .footer-col h4 {
   font-size: 1.1rem;
-  margin-bottom: 0.7rem;
-  color: #7b5e45;
+  margin-bottom: 1rem;
+  color: #E0C9A6;
+  font-weight: 600;
 }
 
 /* Liste link */
@@ -60,61 +88,53 @@
 }
 
 .footer-col ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
   font-size: 1rem;
 }
 
 .footer-col ul li a {
-  color: #2b2b2b;
+  color: #f0f0f0;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: all 0.3s;
 }
 
 .footer-col ul li a:hover {
-  color: #a67c52;
-  text-decoration: underline;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding-left: 5px;
 }
 
 /* Contatti evidenziati */
 .footer-contact ul li span {
   font-weight: 600;
-  color: #7b5e45;
-}
-
-/* Torna sopra */
-.back-to-top {
-  background-color: #f3dbc2;
-  text-align: center;
-  padding: 1rem 0;
-  border-top: 1px solid #d2b48c;
-}
-
-.back-to-top a {
-  color: #7b5e45;
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.back-to-top a:hover {
-  color: #2b2b2b;
+  color: #E0C9A6;
 }
 
 /* Linea finale */
 .footer-bottom {
   text-align: center;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   font-size: 0.9rem;
-  color: #4c4c4c;
-  border-top: 1px solid #d2b48c;
+  color: #cccccc;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.2);
 }
 
 /* Responsive */
 @media screen and (max-width: 900px) {
   .footer-container {
     flex-direction: column;
+    text-align: center;
     padding: 2rem 1rem;
-    gap: 2rem;
+    gap: 2.5rem;
+  }
+
+  .footer-brand, .footer-links, .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .footer-col {
