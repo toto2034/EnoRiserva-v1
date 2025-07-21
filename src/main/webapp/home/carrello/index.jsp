@@ -22,21 +22,21 @@
     <jsp:include page="/components/navbarLogin.jsp" />
 <% } else { %>
     <jsp:include page="/components/navbar.jsp" />
-<% } %>   
+<% } %>
 
     <div class="main-content">
         <div class="cart-container">
             <div class="cart-title">
                 <h1 style="color: black;">Il tuo Carrello</h1>
             </div>
-            
+
             <div id="cart-content">
                 <!-- Il contenuto del carrello sarà caricato dinamicamente -->
                 <div class="cart-empty">
                     <p>Caricamento del carrello...</p>
                 </div>
             </div>
-            
+
             <!-- Aggiungo un messaggio di stato per l'autenticazione -->
             <div id="auth-status" class="cart-info" style="margin-top: 20px; text-align: center; display: none;">
                 <p></p>
@@ -51,7 +51,7 @@
             isLoggedIn = Boolean.TRUE;
         }
         pageContext.setAttribute("isLoggedIn", isLoggedIn);
-        
+
         // Debug info sessione
         out.println("<!-- DEBUG SESSIONE -->");
         out.println("<!-- ID Sessione: " + session.getId() + " -->");

@@ -19,7 +19,7 @@
         <jsp:include page="/components/navbarLogin.jsp" />
     <% } else { %>
         <jsp:include page="/components/navbar.jsp" />
-    <% } %>    
+    <% } %>
 
         <div class="contact-container">
             <h1 style="text-align:center;font-family:'Montserrat',sans-serif;font-size:2.5em;margin-top:40px;letter-spacing:1px;font-weight:700;">Il Nostro Team</h1>

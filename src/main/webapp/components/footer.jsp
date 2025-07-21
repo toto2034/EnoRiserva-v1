@@ -1,4 +1,8 @@
-<% String ctx = request.getContextPath(); %>
+<%
+  String ctx = request.getContextPath();
+  String activePage = (String) request.getAttribute("activePage");
+  if (activePage == null) activePage = "";
+%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/footer.css">
 <footer class="footer">
   <div class="footer-container">
@@ -33,51 +37,3 @@
     <p>&copy; 2025 EnoRiserva. Tutti i diritti riservati.</p>
   </div>
 </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
