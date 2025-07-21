@@ -71,6 +71,7 @@ public class CarrelloDAO {
         }
     }
 
+
     public List<Carrello> getCarrelloByUsername(String username) throws SQLException {
         String sql = "SELECT * FROM Carrello WHERE username = ?";
         List<Carrello> carrelloList = new ArrayList<>();

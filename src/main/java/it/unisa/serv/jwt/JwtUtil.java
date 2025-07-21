@@ -16,7 +16,8 @@ public class JwtUtil {
     private static final String SECRET_STRING = "mySecretKeyForEnoRiservaProjectThatIsLongEnoughForHS256Algorithm";
     private static final Key SECRET_KEY = Keys.hmacShaKeyFor(SECRET_STRING.getBytes());
     private static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60 * 1000; // 5 ore in millisecondi
-    
+
+
     // Genera token per l'utente (basato su username come identificatore principale)
     public static String generateToken(String username, String userType) {
         System.out.println("JwtUtil: Generazione token per username: " + username + ", tipo: " + userType);

@@ -27,7 +27,8 @@ public class CreaOrdineServlet extends HttpServlet {
         
         HttpSession session = request.getSession(false);
         String username = (session != null) ? (String) session.getAttribute("username") : null;
-        
+
+
         if (username == null) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("{\"success\":false, \"message\":\"Utente non autenticato\"}");

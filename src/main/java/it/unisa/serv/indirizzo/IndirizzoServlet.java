@@ -23,6 +23,7 @@ public class IndirizzoServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
 
+
         // Recupera i parametri dal form
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");

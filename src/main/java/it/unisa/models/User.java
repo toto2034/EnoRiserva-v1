@@ -8,7 +8,8 @@ public class User {
     String password;
     String Tipo;
 
-    // Costruttore originale
+    // Costrutt
+    // ore originale
     public User(String username, String nome, String cognome, String email, String password, String tipo) {
         this.username = username;
         this.nome = nome;

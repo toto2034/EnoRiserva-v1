@@ -13,6 +13,7 @@ if (typeof window !== 'undefined') {
         console.error("Errore nel recupero del carrello dal localStorage:", e);
     }
 
+
     /**
      * Aggiunge un prodotto al carrello
      * Se utente loggato: aggiunge al database
