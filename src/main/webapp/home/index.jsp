@@ -1,8 +1,4 @@
-<%--
-  NOTA:
-  La variabile 'ctx' viene definita qui per creare percorsi assoluti.
-  Questo risolve il problema principale del mancato caricamento di CSS/JS.
---%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% String ctx = request.getContextPath(); %>
 
 <!DOCTYPE html>

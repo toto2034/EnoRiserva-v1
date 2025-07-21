@@ -101,7 +101,7 @@ function createProductLayout(articolo) {
     container.appendChild(breadcrumb);
     container.appendChild(productMain);
     container.appendChild(reviewsSection);
-    
+
     // Inserisci il container dentro .main-content invece che in fondo al body
     const mainContent = document.querySelector('.main-content');
     if (mainContent) {
@@ -109,6 +109,7 @@ function createProductLayout(articolo) {
     } else {
         document.body.appendChild(container);
     }
+
 }
 
 function createImagesSection(articolo) {
@@ -166,11 +167,17 @@ function createProductInfo(articolo) {
         <div class="original-price">€${(articolo.prezzo * 1.2).toFixed(2)}</div>
         <div class="savings">Risparmi €${(articolo.prezzo * 0.2).toFixed(2)}!</div>
     `;
-    
+
     // Description
     const description = document.createElement('div');
     description.className = 'product-description';
     description.textContent = articolo.descrizione;
+
+    // Crea il pulsante che aprirà il popup
+    const showModalBtn = document.createElement('button');
+    showModalBtn.className = 'read-more-btn';
+    showModalBtn.textContent = 'Leggi la descrizione completa...';
+    showModalBtn.onclick = () => showDescriptionModal(articolo.nome, articolo.descrizione);
     
     // Availability
     const availability = document.createElement('div');
@@ -180,11 +187,12 @@ function createProductInfo(articolo) {
         `✓ Disponibile (${articolo.quantitaDisponibile} pezzi)` : 
         '✗ Non disponibile';
     availability.innerHTML = `<span class="availability-text ${availabilityClass}">${availabilityText}</span>`;
-    
+
     section.appendChild(title);
     section.appendChild(rating);
     section.appendChild(priceSection);
     section.appendChild(description);
+    section.appendChild(showModalBtn);
     section.appendChild(availability);
     
     // Quantity selector (only if available)
@@ -256,8 +264,7 @@ function createFeaturesSection() {
     section.innerHTML = `
         <h3 class="features-title">Caratteristiche principali:</h3>
         <ul class="features-list">
-            <li><i class="fas fa-check feature-icon"></i>Garanzia 2 anni</li>
-            <li><i class="fas fa-check feature-icon"></i>Spedizione gratuita</li>
+            <li><i class="fas fa-check feature-icon"></i>Spedizione gratuita sopra i €99</li>
             <li><i class="fas fa-check feature-icon"></i>Reso entro 30 giorni</li>
             <li><i class="fas fa-check feature-icon"></i>Assistenza 24/7</li>
         </ul>
@@ -510,4 +517,68 @@ function showAddToCartSuccess(quantity) {
         button.innerHTML = originalText;
         button.style.background = 'linear-gradient(135deg, #6e8efb, #a777e3)';
     }, 2000);
+}
+// ===================================================================
+// === NUOVE FUNZIONI PER IL POPUP (MODAL) DELLA DESCRIZIONE ===
+// ===================================================================
+
+/**
+ * Funzione che crea e mostra un popup (modal) con la descrizione completa.
+ * @param {string} title - Il titolo del prodotto da mostrare nel popup.
+ * @param {string} description - La descrizione completa da mostrare.
+ */
+function showDescriptionModal(title, description) {
+    // Per sicurezza, rimuovi eventuali popup precedenti se esistono
+    const existingModal = document.querySelector('.modal-overlay');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    // 1. Crea l'overlay (lo sfondo scuro semi-trasparente)
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+
+    // 2. Crea il contenitore del popup (la finestra bianca)
+    const modal = document.createElement('div');
+    modal.className = 'modal-content';
+
+    // 3. Inserisci l'HTML dentro al popup (titolo, pulsante chiudi, descrizione)
+    modal.innerHTML = `
+        <button class="modal-close-btn">×</button>
+        <h2>${title}</h2>
+        <p>${description.replace(/\n/g, '<br>')}</p> 
+    `;
+    // Nota: .replace(/\n/g, '<br>') converte gli "a capo" in tag HTML <br>
+
+    // 4. Aggiungi il popup all'overlay e l'overlay alla pagina
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // 5. Mostra il popup con una transizione fluida
+    // Usiamo un piccolo timeout per far partire l'animazione CSS
+    setTimeout(() => overlay.classList.add('visible'), 10);
+
+    // 6. Aggiungi gli eventi per chiudere il popup
+    const closeBtn = modal.querySelector('.modal-close-btn');
+    closeBtn.onclick = () => closeModal(overlay);
+    overlay.onclick = (e) => {
+        // Chiude il popup solo se si clicca sullo sfondo, non sulla finestra
+        if (e.target === overlay) {
+            closeModal(overlay);
+        }
+    };
+}
+
+/**
+ * Funzione che chiude il popup e lo rimuove dalla pagina.
+ * @param {HTMLElement} overlay - L'elemento dell'overlay da chiudere.
+ */
+function closeModal(overlay) {
+    // Rimuove la classe 'visible' per avviare l'animazione di chiusura
+    overlay.classList.remove('visible');
+
+    // Aspetta la fine dell'animazione (300ms) prima di rimuovere l'elemento
+    setTimeout(() => {
+        overlay.remove();
+    }, 300);
 }
