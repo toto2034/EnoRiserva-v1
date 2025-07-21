@@ -7,6 +7,7 @@
         const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const navTopbar = document.querySelector('.nav-topbar');
 
         // Debug mobile menu elements
         console.log('Mobile Menu Debug:', {

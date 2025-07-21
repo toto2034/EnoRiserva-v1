@@ -92,9 +92,9 @@
         </div>
         <div class="product-filter">
             <strong>Ordina per:</strong>
-            <span>VinoRosso</span>
-            <span>VinoBianco</span>
-            <span>Champagne</span>
+            <span>Vino Rosso</span>
+            <span>Vino Bianco</span>
+            <span>Spumante</span>
         </div>
 
         <div class="product-list" id="product-list">

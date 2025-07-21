@@ -1,3 +1,4 @@
+// HOME.JS - Script per la pagina home
 document.addEventListener('DOMContentLoaded', function () {
     // Gestione carosello hero
     const slides = document.querySelectorAll('.slide');
@@ -55,37 +56,33 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- FETCH ARTICOLI E POPOLA LE CARD ---
+    // --- FETCH ARTICOLI E POPOLA LE CARD (HOME) ---
     let articoliData = [];
     fetch('/EnoRiserva-v1/articoli')
         .then(response => response.json())
         .then(data => {
+            console.log("HOME - Articoli ricevuti:", data.length);
             articoliData = data;
             renderArticoli(data);
         })
         .catch(err => {
+            console.error("HOME - Errore caricamento articoli:", err);
             const productList = document.getElementById('product-list');
             if (productList) {
-                productList.innerHTML = '<p>Errore nel caricamento dei prodotti.</p>';
+                productList.innerHTML = '<p style="text-align:center;color:#666;margin-top:30px;">Errore nel caricamento dei prodotti.</p>';
             }
         });
-
-    // Funzione per gestire immagini mancanti (NON PIÙ NECESSARIA, la logica è dentro renderArticoli)
-    // function handleImageError(img) {
-    //     img.onerror = null; // Previene loop infiniti
-    //     img.src = '../images/product-placeholder.jpg';
-    // }
 
     function renderArticoli(articoli) {
         const productList = document.getElementById('product-list');
         if (!productList) {
-            console.log('product-list non trovato, saltando renderArticoli');
+            console.log('HOME - product-list non trovato, saltando renderArticoli');
             return;
         }
 
         productList.innerHTML = '';
 
-        // Definiamo il percorso dell'immagine di fallback UNA SOLA VOLTA
+        // Definiamo il percorso dell'immagine di fallback
         const fallbackImagePath = '/EnoRiserva-v1/images/vino1.jpg';
 
         articoli.forEach(articolo => {
@@ -102,22 +99,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             };
 
-            // --- INIZIO BLOCCO IMMAGINE MODIFICATO ---
+            // Immagine
             const img = document.createElement('img');
-
-            // Logica principale: usa l'URL dal DB o, se mancante, il fallback.
             img.src = articolo.img || fallbackImagePath;
-
-            // Gestione errori: se l'URL dal DB è rotto, usa comunque il fallback.
             img.onerror = function() {
-                this.onerror = null; // Previene loop infiniti
+                this.onerror = null;
                 this.src = fallbackImagePath;
             };
-
             img.alt = articolo.nome;
             img.className = 'product-image-large';
             card.appendChild(img);
-            // --- FINE BLOCCO IMMAGINE MODIFICATO ---
 
             // Nome e prezzo su una riga
             const namePriceRow = document.createElement('div');
@@ -150,12 +141,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             card.appendChild(ratingDiv);
 
-            // Determiniamo il percorso corretto dell'immagine da passare alle altre funzioni
-            const immagineCorrettaPerFunzioni = articolo.img || fallbackImagePath;
+            // Determiniamo il percorso corretto dell'immagine
+            const immagineCorretta = articolo.img || fallbackImagePath;
 
-            // Pulsanti wishlist e carrello in basso
+            // Pulsanti wishlist e carrello
             const buttonsDiv = document.createElement('div');
             buttonsDiv.className = 'product-card-buttons-bottom';
+
             const wishlistBtn = document.createElement('button');
             wishlistBtn.className = 'card-btn wishlist-btn';
             wishlistBtn.setAttribute('data-product-id', articolo.id);
@@ -169,7 +161,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     nome: articolo.nome,
                     descrizione: articolo.descrizione || 'Descrizione non disponibile',
                     prezzo: articolo.prezzo,
-                    immagine: immagineCorrettaPerFunzioni // CORRETTO
+                    immagine: immagineCorretta,
+                    regione: articolo.regione,
+                    tipologia: articolo.tipologia,
+                    annata: articolo.annata
                 };
                 if (typeof window.addToWishlist === 'function') {
                     const success = window.addToWishlist(wishlistItem);
@@ -181,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('Funzione wishlist non disponibile.');
                 }
             };
+
             const cartBtn = document.createElement('button');
             cartBtn.className = 'card-btn cart-btn';
             cartBtn.setAttribute('data-product-id', articolo.id);
@@ -195,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     descrizione: articolo.descrizione || 'Descrizione non disponibile',
                     prezzo: articolo.prezzo,
                     quantita: 1,
-                    immagine: immagineCorrettaPerFunzioni // CORRETTO
+                    immagine: immagineCorretta
                 };
                 if (typeof window.addToCart === 'function') {
                     try {
@@ -212,49 +208,58 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('Funzione carrello non disponibile.');
                 }
             };
+
             buttonsDiv.appendChild(wishlistBtn);
             buttonsDiv.appendChild(cartBtn);
             card.appendChild(buttonsDiv);
-
             productList.appendChild(card);
         });
     }
 
-    // Filtro prodotti
+    // FILTRI PRODOTTI HOME - LOGICA CORRETTA
     const filterOptions = document.querySelectorAll('.product-filter span');
     let filtroAttivo = null;
+
     if (filterOptions.length > 0) {
+        console.log('HOME - Filtri trovati:', filterOptions.length);
+
         filterOptions.forEach(option => {
             option.addEventListener('click', function () {
                 const filtro = this.textContent.trim().toLowerCase();
+                console.log('HOME - Click su filtro:', filtro);
+
                 if (filtroAttivo === filtro) {
+                    // Deseleziona il filtro attivo
                     filtroAttivo = null;
                     filterOptions.forEach(opt => opt.classList.remove('active'));
                     renderArticoli(articoliData);
                 } else {
+                    // Applica nuovo filtro
                     filtroAttivo = filtro;
                     filterOptions.forEach(opt => opt.classList.remove('active'));
                     this.classList.add('active');
+
                     let filtered = [];
-                    if (filtro === 'smarttess') {
-                        filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('smart'));
-                    } else if (filtro === 'smartpillow') {
-                        filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('pillow'));
-                    } else if (filtro === 'memoryfoam') {
-                        filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('memory'));
-                    } else if (filtro === 'molle') {
-                        filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('molle'));
-                    } else if (filtro === 'cashmere') {
-                        filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('cashmere'));
-                    } else if (filtro === 'lattice') {
-                        filtered = articoliData.filter(a => a.nome && a.nome.toLowerCase().includes('lattice'));
-                    } else {
+                    if (filtro === 'vino rosso') {
+                        filtered = articoliData.filter(a => a.tipologia && a.tipologia.toLowerCase().includes('rosso'));
+                    } else if (filtro === 'vino bianco') {
+                        filtered = articoliData.filter(a => a.tipologia && a.tipologia.toLowerCase().includes('bianco'));
+                    } else if (filtro === 'spumante') {
+                        filtered = articoliData.filter(a => a.tipologia && (
+                            a.tipologia.toLowerCase().includes('spumante') ||
+                            a.tipologia.toLowerCase().includes('prosecco') ||
+                            a.tipologia.toLowerCase().includes('champagne')
+                        ));
+                    } else if (filtro === 'tutti') {
                         filtered = articoliData;
                     }
+
+                    console.log('HOME - Prodotti filtrati:', filtered.length);
+
                     if (filtered.length === 0) {
                         const productList = document.getElementById('product-list');
                         if (productList) {
-                            productList.innerHTML = "<p>Nessun articolo disponibile.</p>";
+                            productList.innerHTML = "<p style='text-align:center;color:#666;margin-top:30px;'>Nessun articolo disponibile per questo filtro.</p>";
                         }
                     } else {
                         renderArticoli(filtered);
@@ -264,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- BARRA DI RICERCA LIVE AJAX ---
+    // BARRA DI RICERCA HOME
     const searchInput = document.querySelector('.search-input');
     const searchForm = document.querySelector('.search-form');
 
@@ -277,107 +282,78 @@ document.addEventListener('DOMContentLoaded', function () {
     if (searchInput) {
         searchInput.addEventListener('input', function () {
             const query = searchInput.value.trim().toLowerCase();
+            console.log('HOME - Ricerca:', query);
+
             if (!query) {
                 renderArticoli(articoliData);
                 return;
             }
+
+            // Reset filtri attivi quando si cerca
             filtroAttivo = null;
             if (filterOptions.length > 0) {
                 filterOptions.forEach(opt => opt.classList.remove('active'));
             }
-            renderArticoli(articoliData.filter(a =>
+
+            const filtered = articoliData.filter(a =>
                 (a.nome && a.nome.toLowerCase().includes(query)) ||
-                (a.descrizione && a.descrizione.toLowerCase().includes(query))
-            ));
+                (a.descrizione && a.descrizione.toLowerCase().includes(query)) ||
+                (a.tipologia && a.tipologia.toLowerCase().includes(query)) ||
+                (a.regione && a.regione.toLowerCase().includes(query))
+            );
+
+            console.log('HOME - Risultati ricerca:', filtered.length);
+            renderArticoli(filtered);
         });
     }
 
-    // --- MENU MOBILE APPLE STYLE ---
+    // MENU MOBILE
     function initializeMobileMenu() {
         const openMobileMenuBtn = document.getElementById('openMobileMenu');
         const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
 
-        // Debug mobile menu elements
-        console.log('Mobile Menu Debug:', {
-            openMobileMenuBtn: !!openMobileMenuBtn,
-            closeMobileMenuBtn: !!closeMobileMenuBtn,
-            mobileMenu: !!mobileMenu,
-            mobileMenuOverlay: !!mobileMenuOverlay
-        });
-
         function openMobileMenu() {
-            console.log('Opening mobile menu...');
+            console.log('HOME - Opening mobile menu...');
             if (mobileMenu && mobileMenuOverlay) {
                 mobileMenu.classList.add('open');
                 mobileMenuOverlay.classList.add('open');
                 document.body.style.overflow = 'hidden';
-                console.log('Mobile menu opened successfully');
-            } else {
-                console.error('Mobile menu elements not found');
             }
         }
 
         function closeMobileMenu() {
-            console.log('Closing mobile menu...');
+            console.log('HOME - Closing mobile menu...');
             if (mobileMenu && mobileMenuOverlay) {
                 mobileMenu.classList.remove('open');
                 mobileMenuOverlay.classList.remove('open');
                 document.body.style.overflow = '';
-                console.log('Mobile menu closed successfully');
-            } else {
-                console.error('Mobile menu elements not found');
             }
         }
 
         if (openMobileMenuBtn && closeMobileMenuBtn && mobileMenu && mobileMenuOverlay) {
-            // Remove existing event listeners to prevent duplicates
-            openMobileMenuBtn.removeEventListener('click', openMobileMenu);
-            closeMobileMenuBtn.removeEventListener('click', closeMobileMenu);
-            mobileMenuOverlay.removeEventListener('click', closeMobileMenu);
-
             openMobileMenuBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 openMobileMenu();
             });
-            openMobileMenuBtn.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openMobileMenu();
-                }
-            });
+
             closeMobileMenuBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 closeMobileMenu();
             });
+
             mobileMenuOverlay.addEventListener('click', function(e) {
                 if (e.target === mobileMenuOverlay) {
                     closeMobileMenu();
                 }
             });
-            console.log('Mobile menu event listeners attached successfully');
-        } else {
-            console.error('Some mobile menu elements are missing:', {
-                openMobileMenuBtn: !!openMobileMenuBtn,
-                closeMobileMenuBtn: !!closeMobileMenuBtn,
-                mobileMenu: !!mobileMenu,
-                mobileMenuOverlay: !!mobileMenuOverlay
-            });
         }
     }
 
-    // Initialize mobile menu immediately if DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeMobileMenu);
-    } else {
-        // DOM is already ready
-        initializeMobileMenu();
-    }
-
-    // Also try to initialize after a short delay to catch any late-loading elements
+    // Initialize mobile menu
+    initializeMobileMenu();
     setTimeout(initializeMobileMenu, 100);
-
 });
