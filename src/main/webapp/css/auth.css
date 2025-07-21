@@ -1,10 +1,11 @@
 body {
     font-family: 'Montserrat', Arial, sans-serif;
-    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
+    background: linear-gradient(120deg, #f8f9fa 0%, #ffffff 100%);
     min-height: 100vh;
     margin: 0;
 }
 
+/* Contenitore principale */
 .auth-container {
     display: flex;
     flex-direction: column;
@@ -14,10 +15,11 @@ body {
     gap: 2rem;
 }
 
+/* Card */
 .auth-card {
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -27,18 +29,19 @@ body {
 }
 
 .auth-card:hover {
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
 }
 
-.auth-card h1, .auth-card h2 {
+.auth-card h1,
+.auth-card h2 {
     font-family: 'Playfair Display', serif;
     margin: 0.8rem 0 1.2rem 0;
-    color: #2d3a4b;
+    color: #990F02;
     font-size: 1.8rem;
     text-align: center;
-    word-break: break-word;
 }
 
+/* Form */
 .auth-form {
     width: 100%;
     display: flex;
@@ -49,7 +52,7 @@ body {
 
 .auth-form label {
     font-weight: 600;
-    color: #2d3a4b;
+    color: #5c3a1a;
     margin-bottom: 0.2rem;
     font-size: 1.08rem;
     font-family: 'Poppins', sans-serif;
@@ -59,22 +62,22 @@ body {
     width: 100%;
     box-sizing: border-box;
     padding: 0.8rem 1rem;
-    border: 1px solid #bfc9d1;
+    border: 1px solid #d6d6d6;
     border-radius: 8px;
     font-size: 1.08rem;
-    background: #f7fafd;
+    background: #fff;
     transition: border 0.2s;
     font-family: 'Montserrat', Arial, sans-serif;
-    word-break: break-word;
 }
 
 .auth-form input:focus {
-    border: 1.5px solid #D4AF37;
+    border: 1.5px solid #990F02;
     outline: none;
 }
 
+/* Pulsante */
 .auth-form button {
-    background: linear-gradient(90deg,  #990F02, #D4AF37 100%);
+    background: linear-gradient(90deg, #990F02, #D4AF37);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -84,20 +87,19 @@ body {
     cursor: pointer;
     margin-top: 0.5rem;
     transition: background 0.2s, transform 0.1s;
-    font-family: 'Montserrat', Arial, sans-serif;
 }
 
 .auth-form button:hover {
-    background: linear-gradient(90deg, #990F02, #D4AF37);
+    background: linear-gradient(90deg, #7f0d02, #cfae40);
     transform: translateY(-2px) scale(1.03);
 }
 
+/* Link */
 .switch-text {
     margin-top: 1.2rem;
-    color: #D4AF37;
+    color: #990F02;
     font-size: 1.05rem;
     text-align: center;
-    word-break: break-word;
 }
 
 .switch-link {
@@ -107,29 +109,27 @@ body {
     text-decoration: underline;
     margin-left: 0.3rem;
     transition: color 0.2s;
-    font-family: 'Montserrat', Arial, sans-serif;
 }
 
 .switch-link:hover {
-    color: #D4AF37;
+    color: #a9822a;
 }
 
 .back-home {
     display: inline-flex;
     align-items: center;
-    color: #D4AF37;
+    color: #990F02;
     font-weight: 600;
     text-decoration: none;
     margin-top: 1.2rem;
-    transition: color 0.2s;
-    font-family: 'Montserrat', Arial, sans-serif;
     font-size: 1.05rem;
 }
 
 .back-home:hover {
-    color: #D4AF37;
+    color: #c23c27;
 }
 
+/* Slider */
 .slider-card {
     position: relative;
     overflow: hidden;
@@ -139,7 +139,7 @@ body {
     transition: box-shadow 0.2s;
     margin: 0 auto;
     border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
 .form-wrapper {
@@ -150,7 +150,7 @@ body {
     height: 100%;
     opacity: 0;
     transform: translateX(100%);
-    transition: all 0.5s cubic-bezier(.77,0,.18,1);
+    transition: all 0.5s cubic-bezier(.77, 0, .18, 1);
     z-index: 1;
     background: #fff;
     display: flex;
@@ -179,6 +179,7 @@ body {
     z-index: 1;
 }
 
+/* Responsive */
 @media (max-width: 600px) {
     .slider-card {
         width: 100%;
@@ -193,7 +194,8 @@ body {
         border-radius: 0;
     }
 
-    .auth-card h1, .auth-card h2 {
+    .auth-card h1,
+    .auth-card h2 {
         font-size: 1.5rem;
         margin: 0.5rem 0 1rem 0;
     }
@@ -213,12 +215,13 @@ body {
     }
 }
 
-/* --- MODALE DI BENVENUTO REGISTRAZIONE --- */
+/* MODALE DI BENVENUTO */
 .welcome-modal-overlay {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(44, 62, 80, 0.45);
     z-index: 9999;
     display: flex;
@@ -229,21 +232,27 @@ body {
 .welcome-modal {
     background: #fff;
     border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+    box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
     padding: 2.5rem 2rem 2rem 2rem;
     max-width: 90vw;
     width: 350px;
     text-align: center;
-    animation: welcomePop 0.3s cubic-bezier(.77,0,.18,1);
+    animation: welcomePop 0.3s ease;
 }
 
 @keyframes welcomePop {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .welcome-modal h2 {
-    color: #D4AF37;
+    color: #990F02;
     font-family: 'Playfair Display', serif;
     margin-bottom: 1rem;
     font-size: 1.5rem;
@@ -256,7 +265,7 @@ body {
 }
 
 .welcome-modal-btn {
-    background: linear-gradient(90deg,  #990F02, #D4AF37 100%);
+    background: linear-gradient(90deg, #990F02, #D4AF37);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -265,10 +274,10 @@ body {
     font-weight: 700;
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
-    font-family: 'Montserrat', Arial, sans-serif;
 }
+
 .welcome-modal-btn:hover {
-    background: linear-gradient(90deg,  #990F02, #D4AF37);
+    background: linear-gradient(90deg, #7f0d02, #cfae40);
     transform: translateY(-2px) scale(1.03);
 }
 
