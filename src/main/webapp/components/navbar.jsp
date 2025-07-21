@@ -11,8 +11,9 @@
 
         <ul class="nav-links">
             <li><a href="<%= ctx %>/home/" class="<%= "home".equals(activePage) ? "active" : "" %>">Home</a></li>
-            <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
             <li><a href="<%= ctx %>/home/catalogo/" class="<%= "catalogo".equals(activePage) ? "active" : "" %>">Catalogo</a></li>
+            <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
+
         </ul>
 
         <div class="nav-icons">
@@ -20,7 +21,7 @@
                 <a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
-                <a href="<%= ctx %>/home/auth/" class="<%= "auth".equals(activePage) ? "active" : "" %>"><i class="fas fa-user"></i></a>
+                <a href="<%= ctx %>/home/auth/" class="<%= "auth".equals(activePage) ? "active" : "" %>">Login</a>
             </div>
         </div>
 
@@ -39,12 +40,12 @@
     <button class="close-btn" id="closeMobileMenu" aria-label="Chiudi menu">&times;</button>
     <ul class="menu-list">
         <li><a href="<%= ctx %>/home/" class="<%= "home".equals(activePage) ? "active" : "" %>">Home</a></li>
-        <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
         <li><a href="<%= ctx %>/home/catalogo/" class="<%= "catalogo".equals(activePage) ? "active" : "" %>">Catalogo</a></li>
+        <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
+        <li><a href="<%= ctx %>/home/auth/" class="<%= "auth".equals(activePage) ? "active" : "" %>" title="Profilo">Login</a></li>
     </ul>
     <!-- Nuove icone mobile -->
     <div class="mobile-extra-icons">
         <a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello"><i class="fas fa-shopping-cart fa-2x"></i></a>
-        <a href="<%= ctx %>/home/auth/" class="<%= "auth".equals(activePage) ? "active" : "" %>" title="Profilo"><i class="fas fa-user fa-2x"></i></a>
     </div>
 </nav>
