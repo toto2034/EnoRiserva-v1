@@ -2,7 +2,7 @@
 * { box-sizing: border-box; }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     background: #f8f9fa;
@@ -468,7 +468,7 @@ body {
     border-radius: 30px;
     background: transparent;
     color: #333;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 .search-button {
     background: linear-gradient(135deg,  #990F02, #D4AF37);

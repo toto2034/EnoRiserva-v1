@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EnoRiserva - Home</title>
     <meta charset="UTF-8">
+    <title>EnoRiserva - Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -58,7 +58,7 @@
                 <div class="slide-content">
                     <h1>Un Viaggio nei Sapori del Vino</h1>
                     <p>Dal bianco piu fresco al rosso piu intenso</p>
-                    <a href="#products" class="cta-btn">Scopri di Più</a>
+                    <a href="#products" class="cta-btn">Scopri di Pi&ugrave</a>
                 </div>
             </div>
         </div>
