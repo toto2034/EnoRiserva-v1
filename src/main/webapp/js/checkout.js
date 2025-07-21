@@ -37,7 +37,7 @@ function getCartItems() {
                         userLoggedIn === 'True' || userLoggedIn === 'TRUE' || 
                         userLoggedIn === 'on' || userLoggedIn === '1'));
                                 
-        if (isAuth) {
+        if (1) {
             fetch('/EnoRiserva-v1/api/cart/get', {
                 method: 'GET',
                 credentials: 'include',
@@ -491,7 +491,7 @@ function salvaNuovoIndirizzo(event) {
 function creaOrdineBackend() {
     console.log('=== INIZIO creaOrdineBackend ===');
     
-    // Verifica che l'utente sia loggato usando la stessa logica di cart.js
+    /* Verifica che l'utente sia loggato usando la stessa logica di cart.js
     const isAuth = (typeof userLoggedIn !== 'undefined' && 
                    (userLoggedIn === 'true' || userLoggedIn === true || 
                     userLoggedIn === 'True' || userLoggedIn === 'TRUE' || 
@@ -504,7 +504,7 @@ function creaOrdineBackend() {
     }
     
     console.log('Username:', window.username);
-    
+    */
     // Recupera articoli dal carrello
     getCartItems().then(prodotti => {
         console.log('Prodotti dal carrello:', prodotti);
@@ -637,58 +637,47 @@ function creaOrdineBackend() {
                     return nome + ' x' + quantita;
                 });
                 localStorage.setItem('prodottiConfermati', JSON.stringify(prodottiNomi));
-                
-                // Recupera dati utente per l'email
-                const username = window.username || sessionStorage.getItem('username') || localStorage.getItem('username');
-                console.log('Username per recupero dati:', username);
-                
-                if (!username) {
-                    console.error('Utente non loggato, redirect al login');
-                    mostraOrderErrorModal('Devi essere loggato per completare l\'ordine. Verrai reindirizzato alla pagina di login.');
-                    setTimeout(() => {
-                        window.location.href = '/EnoRiserva-v1/home/auth/';
-                    }, 2000);
-                    return;
+
+                const username = localStorage.getItem('username');
+
+                function emptyCartAndRedirect(callback) {
+                    fetch('/EnoRiserva-v1/api/cart/clear', {  // <--- CORRETTO QUI
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include'
+                    })
+                        .then(res => {
+                            if (!res.ok) {
+                                throw new Error('HTTP error! status: ' + res.status);
+                            }
+                            return res.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Carrello svuotato con successo');
+                                callback();
+                            } else {
+                                console.error('Errore nello svuotare il carrello:', data.error || data.message);
+                            }
+                        })
+                        .catch(err => {
+                            console.error('Errore nella richiesta DELETE per svuotare carrello:', err);
+                        });
                 }
-                
-                fetch('/EnoRiserva-v1/utenti/userbyid?username=' + encodeURIComponent(username))
+
+
+// Uso:
+                fetch('/EnoRiserva-v1/utenti/userbyid?username=' + username, { credentials: 'include' })
                     .then(res => res.json())
                     .then(userData => {
-                        console.log('Dati utente recuperati:', userData);
                         if (!userData.error) {
-                            // Prepara dati ordine per l'email
-                            const orderData = {
-                                idOrdine: data.idOrdine,
-                                prodotti: prodotti,
-                                totale: totale,
-                                metodoPagamento: metodoPagamento
-                            };
-                            
-                            console.log('Dati ordine per email:', orderData);
-                            console.log('Email destinatario:', userData.email);
-                            
-                            // Invia email di conferma
-                            console.log('=== DEBUG EMAIL ===');
-                            console.log('EmailJS disponibile:', typeof emailjs !== 'undefined');
-                            console.log('sendOrderConfirmationEmail disponibile:', typeof sendOrderConfirmationEmail !== 'undefined');
-                            console.log('orderData:', orderData);
-                            console.log('userData:', userData);
-                            
-                            if (typeof sendOrderConfirmationEmail === 'function') {
-                                sendOrderConfirmationEmail(orderData, userData);
-                                console.log('Email inviata, procedo con redirect');
-                            } else {
-                                console.error('ERRORE: sendOrderConfirmationEmail non è disponibile!');
-                            }
-                            
-                            // Svuota carrello e redirect DOPO l'invio email
                             emptyCartAndRedirect(function() {
                                 if (metodoPagamento === 'CARTA') {
                                     window.location.href = '/EnoRiserva-v1/home/carrello/conferma_acquisto/?ordine=' + data.idOrdine + '&dom=false';
-                                    return;
-                                }else if(metodoPagamento === 'DOMICILIO') {
-                                    window.location.href = '/EnoRiserva-v1/home/carrello/conferma_acquisto/?ordine=' + data.idOrdine+ '&dom=true';
-                                    return;
+                                } else if (metodoPagamento === 'DOMICILIO') {
+                                    window.location.href = '/EnoRiserva-v1/home/carrello/conferma_acquisto/?ordine=' + data.idOrdine + '&dom=true';
                                 }
                             });
                         } else {
@@ -696,7 +685,7 @@ function creaOrdineBackend() {
                         }
                     })
                     .catch(err => {
-                        console.error('Errore nel recupero dati utente per email:', err);
+                        console.error('Errore nel recupero dati utente:', err);
                     });
             } else {
                 console.log('Errore nella creazione ordine:', data.message);

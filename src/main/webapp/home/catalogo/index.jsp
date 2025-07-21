@@ -51,9 +51,9 @@
             <div class="product-filter" style="flex:1;min-width:60%;">
                 <strong>Filtra per:</strong>
                 <span class="active">Tutti</span>
-                <span>VINO ROSSO</span>
-                <span>VINO BIANCO</span>
-                <span>SPUMANTE</span>
+                <span>Vino Rosso</span>
+                <span>Vino Bianco</span>
+                <span>Spumante</span>
             </div>
 
             <!-- Opzioni di ordinamento -->

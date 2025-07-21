@@ -1,23 +1,31 @@
-<% 
-    String ctx = request.getContextPath(); 
+<%
+    String ctx = request.getContextPath();
     String activePage = (String) request.getAttribute("activePage");
     if (activePage == null) activePage = "";
 %>
+
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo-container">
-            <img src="<%= ctx %>/images/logo.png" alt="Logo" class="logo-img">
+            <img src="<%= ctx %>/images/logo.png" alt="Logo" class="logo-img"></div>
 
-        </div>
         <ul class="nav-links">
             <li><a href="<%= ctx %>/home/" class="<%= "home".equals(activePage) ? "active" : "" %>">Home</a></li>
-            <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
             <li><a href="<%= ctx %>/home/catalogo/" class="<%= "catalogo".equals(activePage) ? "active" : "" %>">Catalogo</a></li>
-            <li><a href="<%= ctx %>/home/profilo/" class="<%= "auth".equals(activePage) ? "active" : "" %>">Profilo</a></li>
-            <li><a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello">
-                <i class="fas fa-shopping-cart"></i>
-            </a></li>
+            <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
+
         </ul>
+
+        <div class="nav-icons">
+            <div class="nav-links">
+                <a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="<%= ctx %>/home/profilo/" class="<%= "auth".equals(activePage) ? "active" : "" %>"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+
+
         <div class="hamburger" id="openMobileMenu" aria-label="Apri menu mobile" tabindex="0">
             <span></span>
             <span></span>
@@ -32,11 +40,12 @@
     <button class="close-btn" id="closeMobileMenu" aria-label="Chiudi menu">&times;</button>
     <ul class="menu-list">
         <li><a href="<%= ctx %>/home/" class="<%= "home".equals(activePage) ? "active" : "" %>">Home</a></li>
-        <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
         <li><a href="<%= ctx %>/home/catalogo/" class="<%= "catalogo".equals(activePage) ? "active" : "" %>">Catalogo</a></li>
-        <li><a href="<%= ctx %>/home/profilo/" class="<%= "auth".equals(activePage) ? "active" : "" %>">Profilo</a></li>
-        <li><a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello">
-            <i class="fas fa-shopping-cart"></i>
-        </a></li>
+        <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
     </ul>
+    <!-- Nuove icone mobile -->
+    <div class="mobile-extra-icons">
+        <a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello"><i class="fas fa-shopping-cart fa-2x"></i></a>
+        <a href="<%= ctx %>/home/profilo/" class="<%= "auth".equals(activePage) ? "active" : "" %>" title="Profilo"><i class="fas fa-user fa-2x"></i></a>
+    </div>
 </nav>

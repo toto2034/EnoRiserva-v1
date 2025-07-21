@@ -29,6 +29,7 @@ public class GestioneIndirizzoServlet extends HttpServlet {
             response.getWriter().write("{\"success\":false,\"message\":\"Dati mancanti\"}");
             return;
         }
+
         int id = Integer.parseInt(idStr);
         try (Connection conn = ConnectionManager.getConnection()) {
             IndirizzoDAO dao = new IndirizzoDAO();

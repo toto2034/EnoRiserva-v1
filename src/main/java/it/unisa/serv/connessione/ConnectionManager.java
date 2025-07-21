@@ -8,6 +8,7 @@ public class ConnectionManager {
     private static final String pwd= "root";
     private static final String url="jdbc:mysql://127.0.0.1:3306/enoriserva";
 
+
     private static Connection conn;
 
     public static Connection getConnection() throws SQLException {

@@ -31,6 +31,7 @@ public class AuthDAO extends HttpServlet {
         }
     }
 
+
     private void handleRegister(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String nome = request.getParameter("nome");

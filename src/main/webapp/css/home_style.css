@@ -323,13 +323,16 @@ body {
     margin-left: 10px;
     white-space: nowrap;
 }
+
 .product-description {
     font-size: 0.97em;
     color: #666;
     margin: 6px 0 10px 0;
-    line-height: 1.4;
-    min-height: 38px;
-    max-height: 54px;
+    line-height: 1.5;
+    max-height: 4.4em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
     overflow: hidden;
 }
 .product-rating {

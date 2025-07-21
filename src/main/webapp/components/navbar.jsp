@@ -11,17 +11,25 @@
 
         <ul class="nav-links">
             <li><a href="<%= ctx %>/home/" class="<%= "home".equals(activePage) ? "active" : "" %>">Home</a></li>
-            <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
             <li><a href="<%= ctx %>/home/catalogo/" class="<%= "catalogo".equals(activePage) ? "active" : "" %>">Catalogo</a></li>
-            <li><a href="<%= ctx %>/home/auth/" class="<%= "auth".equals(activePage) ? "active" : "" %>">Login|Registrati</a></li>
-            <li><a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello">
-                <i class="fas fa-shopping-cart"></i>
-            </a></li>
+            <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
+
         </ul>
+
+        <div class="nav-icons">
+            <div class="nav-links">
+                <a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="<%= ctx %>/home/auth/" class="<%= "auth".equals(activePage) ? "active" : "" %>">Login</a>
+            </div>
+        </div>
+
+
         <div class="hamburger" id="openMobileMenu" aria-label="Apri menu mobile" tabindex="0">
-            <span></span>
-            <span></span>
-            <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
         </div>
     </div>
 </nav>
@@ -32,11 +40,12 @@
     <button class="close-btn" id="closeMobileMenu" aria-label="Chiudi menu">&times;</button>
     <ul class="menu-list">
         <li><a href="<%= ctx %>/home/" class="<%= "home".equals(activePage) ? "active" : "" %>">Home</a></li>
-        <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
         <li><a href="<%= ctx %>/home/catalogo/" class="<%= "catalogo".equals(activePage) ? "active" : "" %>">Catalogo</a></li>
-        <li><a href="<%= ctx %>/home/auth/" class="<%= "auth".equals(activePage) ? "active" : "" %>">Login|Registrati</a></li>
-        <li><a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello">
-            <i class="fas fa-shopping-cart"></i>
-        </a></li>
+        <li><a href="<%= ctx %>/home/contatti/" class="<%= "contatti".equals(activePage) ? "active" : "" %>">Contatti</a></li>
+        <li><a href="<%= ctx %>/home/auth/" class="<%= "auth".equals(activePage) ? "active" : "" %>" title="Profilo">Login</a></li>
     </ul>
+    <!-- Nuove icone mobile -->
+    <div class="mobile-extra-icons">
+        <a href="<%= ctx %>/home/carrello/" class="<%= "carrello".equals(activePage) ? "active" : "" %>" title="Carrello"><i class="fas fa-shopping-cart fa-2x"></i></a>
+    </div>
 </nav>
